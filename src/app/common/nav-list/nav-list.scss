@@ -1,0 +1,12 @@
+@import "../../styles/_functions/functions.scss";
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: toRem(16);
+  background: #1b1a22;
+  max-width: toRem(1920);
+  width: 100%;
+  margin: 0 auto;
+  height: fit-content;
+}

@@ -1,0 +1,17 @@
+@import "../../../../styles/_functions/functions.scss";
+
+.nav-list-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: toRem(8);
+  padding: toRem(12);
+  &-icon {
+    width: toRem(24);
+    height: toRem(24);
+  }
+  &-name {
+    @include font-roboto(16, 400, 24);
+    color: #fff;
+  }
+}

@@ -1,0 +1,63 @@
+@import "/src/app/styles/_functions/functions.scss";
+
+.carousel {
+  &-container {
+    position: relative;
+    width: 100%; // Ensure container has width
+    overflow: hidden; // Keeps everything outside the viewport hidden
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    user-select: none; // Prevents text highlighting while dragging
+    touch-action: pan-y; // Allows vertical scrolling of page while blocking horizontal drag interference
+
+    &.dragging {
+      cursor: grabbing;
+    }
+    &-slides {
+      display: flex;
+      width: 100%;
+      height: toRem(600);
+      transition: transform 0.5s ease-in-out; // Smooth sliding animation
+
+      &-item {
+        min-width: 100%; // Each slide takes full width of container
+        height: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; // Prevents image distortion
+          pointer-events: none; // Crucial: prevents the browser from trying to "save image" drag
+          -webkit-user-drag: none;
+        }
+      }
+    }
+
+    &-button {
+      z-index: 10; // Ensure buttons stay above images
+      cursor: pointer;
+      position: absolute;
+      border: none;
+      width: toRem(32);
+      height: toRem(32);
+      border-radius: 50%;
+      background: rgba(#fff, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+
+      &:hover {
+        background: rgba(#fff, 0.9);
+      }
+
+      &.prev {
+        left: toRem(10);
+      }
+      &.next {
+        right: toRem(10);
+      }
+    }
+  }
+}
