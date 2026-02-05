@@ -1,0 +1,39 @@
+@import "../../../styles/_functions/functions.scss";
+
+.sidebar {
+  height: 100%;
+  width: toRem(320);
+  background: #fff;
+  box-shadow: 5px 5px 5px rgba($color: #000, $alpha: 0.2);
+  padding: toRem(24);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(32);
+  &-name {
+    @include font-roboto(24, 700, 32);
+    color: black;
+    text-align: left;
+  }
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(12);
+    &-item {
+      @include font-roboto(16, 500, 24);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border: 0;
+      padding: toRem(16);
+      background: none;
+      transition: background 0.3s ease-in-out;
+      &:hover {
+        background-color: rgba($color: #000, $alpha: 0.1);
+      }
+      &.selected {
+        background-color: rgba($color: #000, $alpha: 0.1);
+      }
+    }
+  }
+}
