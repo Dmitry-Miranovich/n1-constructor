@@ -1,4 +1,18 @@
 {
+  "blocks": [
+    {
+      "id": "1",
+      "type": "banner"
+    },
+    {
+      "id": "2",
+      "type": "cardTypes"
+    },
+    {
+      "id": "3",
+      "type": "cards"
+    }
+  ],
   "cards": [
     {
       "id": "1",
@@ -15,9 +29,19 @@
   ],
   "banner": [
     {
-      "id": "0",
-      "image": "",
-      "name": "Some shit"
+      "id": 0,
+      "name": "asdasd",
+      "imageUrl": "/uploads/banners/banner-3.webp"
+    },
+    {
+      "id": 1,
+      "name": "123123123",
+      "imageUrl": "/uploads/banners/banner-2.webp"
+    },
+    {
+      "id": 2,
+      "name": "wqeqweqwe",
+      "imageUrl": "/uploads/banners/banner-4.webp"
     }
   ]
 }

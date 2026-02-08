@@ -1,3 +1,8 @@
+:root {
+  --color-red: #ed0000;
+  --color-green: #15b500;
+}
+
 #root {
   height: 100%;
 }

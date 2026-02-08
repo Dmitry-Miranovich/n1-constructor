@@ -37,3 +37,11 @@
     }
   }
 }
+
+.exit-list-item {
+  cursor: pointer;
+  @include font-roboto(16, 500, 24);
+  color: var(--color-red);
+  text-decoration: none;
+  padding: toRem(16);
+}

@@ -1,5 +1,6 @@
 import "./sidebar.scss";
 import { SIDEBAR_DATA } from "./sidebar.data";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({ type, onClick }) {
   return (
@@ -17,6 +18,9 @@ export default function Sidebar({ type, onClick }) {
             {item.name}
           </button>
         ))}
+        <Link to={"/"} className="exit-list-item">
+          Exit
+        </Link>
       </div>
     </aside>
   );

@@ -1,125 +1,66 @@
-// ImageSelect.jsx
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import "./select.scss";
 import { IMAGE_LIBRARY } from "./select.data";
 
-/**
- * Компонент выбора изображения из библиотеки
- * @param {Object} props
- * @param {string} props.value - Текущее выбранное изображение (URL)
- * @param {Function} props.onChange - Колбэк при изменении выбора
- * @param {string} props.category - Категория изображений ('banners', 'games', 'icons')
- * @param {string} props.label - Лейбл для поля
- * @param {string} props.className - Дополнительные CSS классы
- */
-export default function ImageSelect({
+export default function Select({
   value,
   onChange,
+  readOnly,
   category = "banners",
-  label = "Select Image",
   className = "",
 }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
 
-  // Демо-библиотека изображений
+  const options = IMAGE_LIBRARY[category] || [];
 
-  const images = IMAGE_LIBRARY[category] || [];
+  const filteredOptions = useMemo(() => {
+    return options.filter((option) =>
+      option.label.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }, [options, searchTerm]);
 
-  // Фильтрация по поиску
-  const filteredImages = search
-    ? images.filter(
-        (img) =>
-          img.label.toLowerCase().includes(search.toLowerCase()) ||
-          (img.provider &&
-            img.provider.toLowerCase().includes(search.toLowerCase())),
-      )
-    : images;
-
-  const selectedImage = images.find((img) => img.url === value);
-
-  const handleSelect = (imageUrl) => {
-    onChange(imageUrl);
+  const handleSelect = (val) => {
+    onChange(val.url);
+    setSearchTerm("");
     setIsOpen(false);
-    setSearch("");
-  };
-
-  const handleClear = () => {
-    onChange("");
   };
 
   return (
-    <div className={`image-select ${className}`}>
-      {label && <label className="image-select-label">{label}</label>}
-
-      <div className="image-select-trigger" onClick={() => setIsOpen(!isOpen)}>
-        {selectedImage ? (
-          <div className="image-select-selected">
-            <img
-              src={selectedImage.url}
-              alt={selectedImage.label}
-              className="image-preview"
-            />
-            <span className="image-label">{selectedImage.label}</span>
-          </div>
+    <div className={`select-container ${className}`}>
+      <div className="select-wrapper">
+        {readOnly ? (
+          <p>{value}</p>
         ) : (
-          <div className="image-select-placeholder">
-            <span>Click to select image...</span>
-          </div>
+          <input
+            type="text"
+            className="select-input"
+            placeholder={value || "Search or select..."}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onFocus={() => setIsOpen(true)}
+            onBlur={() => setTimeout(() => setIsOpen(false), 200)} // Delay to allow click
+          />
         )}
-        <span className="image-select-arrow">{isOpen ? "▲" : "▼"}</span>
-      </div>
 
-      {isOpen && (
-        <div className="image-select-dropdown">
-          <div className="image-select-search">
-            <input
-              type="text"
-              placeholder="Search images..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="image-search-input"
-              onClick={(e) => e.stopPropagation()}
-            />
-            {value && (
-              <button
-                onClick={handleClear}
-                className="clear-button"
-                title="Clear selection"
-              >
-                ✕
-              </button>
-            )}
-          </div>
-
-          <div className="image-select-grid">
-            {filteredImages.length > 0 ? (
-              filteredImages.map((img) => (
-                <div
-                  key={img.id}
-                  className={`image-select-option ${value === img.url ? "selected" : ""}`}
-                  onClick={() => handleSelect(img.url)}
-                  title={`${img.label}${img.size ? ` (${img.size})` : ""}${img.provider ? ` - ${img.provider}` : ""}`}
+        {isOpen && (
+          <ul className="select-dropdown">
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((opt, index) => (
+                <li
+                  key={index}
+                  className={`select-item ${value === opt ? "active" : ""}`}
+                  onClick={() => handleSelect(opt)}
                 >
-                  <img src={img.url} alt={img.label} className="option-image" />
-                  <div className="option-label">{img.label}</div>
-                  {img.provider && (
-                    <div className="option-meta">{img.provider}</div>
-                  )}
-                </div>
+                  {opt.label}
+                </li>
               ))
             ) : (
-              <div className="no-results">No images found</div>
+              <li className="select-no-results">No results found</li>
             )}
-          </div>
-
-          <div className="image-select-footer">
-            <small>
-              {images.length} images available • {category} category
-            </small>
-          </div>
-        </div>
-      )}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

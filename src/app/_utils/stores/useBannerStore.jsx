@@ -1,10 +1,12 @@
 import { create } from "zustand";
+import { SettingsMode } from "../enums/settings";
 
+// useBannerStore.js - добавь эти функции
 export const useBannerStore = create((set) => ({
   banners: [],
   editMode: {
     id: -1,
-    mode: false,
+    mode: SettingsMode.VIEW,
   },
   editBanner: null,
 
@@ -19,15 +21,50 @@ export const useBannerStore = create((set) => ({
       ),
     })),
 
-  updateEditBannerField: (field, newValue) =>
+  updateEditBannerField: (field, newValue) => {
     set((state) => ({
       editBanner: state.editBanner
         ? { ...state.editBanner, [field]: newValue }
         : null,
-    })),
+    }));
+  },
 
   setEditMode: (id, mode) =>
     set({
       editMode: { id, mode },
     }),
+
+  addBanner: (banner) =>
+    set((state) => ({ banners: [...state.banners, banner] })),
+
+  // НОВЫЕ ФУНКЦИИ ДЛЯ ПЕРЕМЕЩЕНИЯ
+  moveBannerUp: (index) =>
+    set((state) => {
+      if (index <= 0) return state; // Нельзя поднять первую строку
+      const newBanners = [...state.banners];
+      // Меняем местами текущий и предыдущий элемент
+      [newBanners[index], newBanners[index - 1]] = [
+        newBanners[index - 1],
+        newBanners[index],
+      ];
+      return { banners: newBanners };
+    }),
+
+  moveBannerDown: (index) =>
+    set((state) => {
+      if (index >= state.banners.length - 1) return state; // Нельзя опустить последнюю
+      const newBanners = [...state.banners];
+      // Меняем местами текущий и следующий элемент
+      [newBanners[index], newBanners[index + 1]] = [
+        newBanners[index + 1],
+        newBanners[index],
+      ];
+      return { banners: newBanners };
+    }),
+
+  // Удаление
+  deleteBanner: (index) =>
+    set((state) => ({
+      banners: state.banners.filter((_, i) => i !== index),
+    })),
 }));
