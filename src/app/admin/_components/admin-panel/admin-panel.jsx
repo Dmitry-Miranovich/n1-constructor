@@ -7,12 +7,15 @@ export default function AdminPanel({ type }) {
   const renderPanel = useMemo(() => {
     switch (type) {
       case SIDEBAR_TYPES[0]: {
-        return <BannerPanel />;
-      }
-      case SIDEBAR_TYPES[1]: {
         return;
       }
+      case SIDEBAR_TYPES[1]: {
+        return <BannerPanel />;
+      }
       case SIDEBAR_TYPES[2]: {
+        return;
+      }
+      case SIDEBAR_TYPES[3]: {
         return;
       }
       default:

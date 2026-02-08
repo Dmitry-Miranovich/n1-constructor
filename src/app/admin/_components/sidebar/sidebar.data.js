@@ -1,17 +1,21 @@
-const SIDEBAR_TYPES = ["banner", "cardTypes", "cards"];
+const SIDEBAR_TYPES = ["main", "banner", "cardTypes", "cards"];
 
 const SIDEBAR_DATA = [
   {
-    name: "Banners",
+    name: "Main",
     type: SIDEBAR_TYPES[0],
   },
   {
-    name: "Card types",
+    name: "Banners",
     type: SIDEBAR_TYPES[1],
   },
   {
-    name: "Cards",
+    name: "Card types",
     type: SIDEBAR_TYPES[2],
+  },
+  {
+    name: "Cards",
+    type: SIDEBAR_TYPES[3],
   },
 ];
 

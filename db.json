@@ -1,13 +1,23 @@
 {
   "cards": [
-    { "id": 1, "name": "John Doe", "email": "john@example.com", "age": 28 },
-    { "id": 2, "name": "Jane Smith", "email": "jane@example.com", "age": 32 }
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "age": 28
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "age": 32
+    }
   ],
   "banner": [
     {
-      "id": 1,
+      "id": "0",
       "image": "",
-      "name": ""
+      "name": "Some shit"
     }
   ]
 }
