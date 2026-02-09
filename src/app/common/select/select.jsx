@@ -6,13 +6,11 @@ export default function Select({
   value,
   onChange,
   readOnly,
-  category = "banners",
+  options = [], // ← теперь options принимаем как пропс
   className = "",
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
-  const options = IMAGE_LIBRARY[category] || [];
 
   const filteredOptions = useMemo(() => {
     return options.filter((option) =>
@@ -21,44 +19,52 @@ export default function Select({
   }, [options, searchTerm]);
 
   const handleSelect = (val) => {
-    onChange(val.url);
+    onChange(val.value); // ← возвращаем value, не url
     setSearchTerm("");
     setIsOpen(false);
   };
+
+  // Находим выбранную опцию для отображения
+  const selectedOption = options.find((opt) => opt.value === value);
 
   return (
     <div className={`select-container ${className}`}>
       <div className="select-wrapper">
         {readOnly ? (
-          <p>{value}</p>
+          <p>{selectedOption?.label || value}</p>
         ) : (
-          <input
-            type="text"
-            className="select-input"
-            placeholder={value || "Search or select..."}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onFocus={() => setIsOpen(true)}
-            onBlur={() => setTimeout(() => setIsOpen(false), 200)} // Delay to allow click
-          />
-        )}
+          <>
+            <input
+              type="text"
+              className="select-input"
+              placeholder={selectedOption?.value || "Search or select..."}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => setIsOpen(true)}
+              onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+            />
 
-        {isOpen && (
-          <ul className="select-dropdown">
-            {filteredOptions.length > 0 ? (
-              filteredOptions.map((opt, index) => (
-                <li
-                  key={index}
-                  className={`select-item ${value === opt ? "active" : ""}`}
-                  onClick={() => handleSelect(opt)}
-                >
-                  {opt.label}
-                </li>
-              ))
-            ) : (
-              <li className="select-no-results">No results found</li>
+            {isOpen && (
+              <ul className="select-dropdown">
+                {filteredOptions.length > 0 ? (
+                  filteredOptions.map((opt, index) => (
+                    <li
+                      key={opt.value || index}
+                      className={`select-item ${value === opt.value ? "active" : ""}`}
+                      onClick={() => handleSelect(opt)}
+                    >
+                      {opt.label}
+                      {opt.icon && (
+                        <img src={opt.icon} alt="" className="select-icon" />
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <li className="select-no-results">No results found</li>
+                )}
+              </ul>
             )}
-          </ul>
+          </>
         )}
       </div>
     </div>

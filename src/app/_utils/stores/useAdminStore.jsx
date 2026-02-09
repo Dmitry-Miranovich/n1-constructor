@@ -30,16 +30,26 @@ export const useAdminStore = create((set, get) => ({
   // Добавить новый элемент
   addItem: (entityType, item) =>
     set((state) => ({
-      [entityType]: [...state[entityType], { ...item, id: Date.now() }],
+      [entityType]: [...state[entityType], { ...item }],
     })),
 
-  // Удалить элемент
   deleteItem: (entityType, id) =>
     set((state) => ({
       [entityType]: state[entityType].filter((item) => item.id !== id),
     })),
 
-  // Установить режим редактирования
+  deleteItemByIndex: (entityType, index) =>
+    set((state) => ({
+      [entityType]: state[entityType].filter((_, i) => i !== index),
+    })),
+
+  updateFieldByIndex: (entityType, index, field, value) =>
+    set((state) => ({
+      [entityType]: state[entityType].map((item, i) =>
+        i === index ? { ...item, [field]: value } : item,
+      ),
+    })),
+
   setEditMode: (entityType, id, mode) =>
     set((state) => ({
       editModes: {
@@ -56,6 +66,37 @@ export const useAdminStore = create((set, get) => ({
 
     return state[entityType].find((item) => item.id === editMode.id);
   },
+
+  moveItemUp: (entityType, index) =>
+    set((state) => {
+      if (index <= 0) return state;
+
+      const items = [...state[entityType]];
+      [items[index], items[index - 1]] = [items[index - 1], items[index]];
+
+      // Переиндексируем если нужно
+      const renumberedItems = items.map((item, idx) => ({
+        ...item,
+        id: idx,
+      }));
+
+      return { [entityType]: renumberedItems };
+    }),
+
+  moveItemDown: (entityType, index) =>
+    set((state) => {
+      if (index >= state[entityType].length - 1) return state;
+
+      const items = [...state[entityType]];
+      [items[index], items[index + 1]] = [items[index + 1], items[index]];
+
+      const renumberedItems = items.map((item, idx) => ({
+        ...item,
+        id: idx,
+      }));
+
+      return { [entityType]: renumberedItems };
+    }),
 
   // === СЕЛЕКТОРЫ ДЛЯ ТАБЛИЦ ===
 

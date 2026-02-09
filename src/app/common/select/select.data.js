@@ -25,4 +25,26 @@ export const IMAGE_LIBRARY = {
       size: "400x200",
     },
   ],
+  cardTypes: [
+    {
+      id: "ct1",
+      url: "/uploads/cardTypes/cherry.svg",
+      label: "Cherry",
+    },
+    {
+      id: "ct2",
+      url: "/uploads/cardTypes/moneyBag.svg",
+      label: "MoneyBag",
+    },
+    {
+      id: "ct3",
+      url: "/uploads/cardTypes/rocket.svg",
+      label: "Rocket",
+    },
+    {
+      id: "ct4",
+      url: "/uploads/cardTypes/medal.svg",
+      label: "Medal",
+    },
+  ],
 };

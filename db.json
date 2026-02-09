@@ -13,39 +13,40 @@
       "type": "cards"
     }
   ],
-  "cards": [
+  "cardTypes": [
+    {
+      "id": "0",
+      "name": "asd",
+      "icon": "/uploads/cardTypes/moneyBag.svg",
+      "filter": "asdasd"
+    },
     {
       "id": "1",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "age": 28
+      "name": "asdasd",
+      "icon": "/uploads/cardTypes/rocket.svg",
+      "filter": "asdasdasd"
     },
     {
       "id": "2",
-      "name": "Jane Smith",
-      "email": "jane@example.com",
-      "age": 32
+      "name": "asdasd",
+      "icon": "/uploads/cardTypes/medal.svg",
+      "filter": "213"
     }
   ],
   "banner": [
     {
       "id": "0",
-      "name": "1231231232",
+      "name": "asdasdasd21231",
       "imageUrl": "/uploads/banners/banner-2.webp"
     },
     {
       "id": "1",
-      "name": "asdasd",
-      "imageUrl": "/uploads/banners/banner-3.webp"
+      "name": "1231231232121ffsdfsdf",
+      "imageUrl": "/uploads/banners/banner-1.webp"
     },
     {
       "id": "2",
-      "name": "wqeqweqwe",
-      "imageUrl": "/uploads/banners/banner-4.webp"
-    },
-    {
-      "id": "3",
-      "name": "asd",
+      "name": "asdasd",
       "imageUrl": "/uploads/banners/banner-2.webp"
     }
   ]

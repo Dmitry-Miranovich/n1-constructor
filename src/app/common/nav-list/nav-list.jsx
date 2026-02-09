@@ -18,6 +18,7 @@ export default function NavList({ items }) {
         <NavListItem
           icon={nav_item.icon}
           name={nav_item.name}
+          onClick={() => {}}
           key={`nav-list-item-${index}`}
         />
       ))}

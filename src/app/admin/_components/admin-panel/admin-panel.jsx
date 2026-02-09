@@ -14,7 +14,12 @@ export default function AdminPanel({ type }) {
         return <BannerPanel />;
       }
       case SIDEBAR_TYPES[2]: {
-        return <CardsTypesPanel />;
+        return (
+          <CardsTypesPanel
+            entityType={"cardTypes"}
+            entityApiName={"cardTypes"}
+          />
+        );
       }
       case SIDEBAR_TYPES[3]: {
         return;

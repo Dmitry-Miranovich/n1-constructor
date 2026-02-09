@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 export default function HomePage() {
   const { data } = useGet("banner");
+  const { data: cardTypes } = useGet("cardTypes");
 
   useEffect(() => {
     console.log(process.env.REACT_APP_API_URL);
@@ -26,7 +27,12 @@ export default function HomePage() {
           autoPlay={false}
         />
       )}
-      <NavList items={navItemsDefault} />
+      <NavList
+        items={cardTypes.map((cardType) => ({
+          icon: `${process.env.REACT_APP_API_URL}${cardType.icon}`,
+          name: cardType.name,
+        }))}
+      />
       {/* <CardList items={[]} icon={pic1} name="Top" /> */}
     </div>
   );
