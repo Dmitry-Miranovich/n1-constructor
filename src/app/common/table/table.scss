@@ -37,14 +37,18 @@
             @include font-roboto(16, 700, 24);
             padding: toRem(16);
             background-color: rgba($color: #fff, $alpha: 0.8);
-            width: toRem(200);
+            // width: toRem(200);
             &:first-child {
               width: toRem(110);
+              text-align: center;
             }
             // Стиль для заголовка Order
             &.order-header {
-              width: toRem(100);
-              text-align: center;
+              //   width: toRem(100);
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
             }
           }
         }
@@ -60,7 +64,14 @@
           &-item {
             padding: toRem(16);
             @include font-roboto(16, 700, 24);
-
+            text-align: center;
+            &.order-header {
+              //   width: toRem(100);
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+            }
             &-actions {
               display: flex;
               gap: toRem(8);

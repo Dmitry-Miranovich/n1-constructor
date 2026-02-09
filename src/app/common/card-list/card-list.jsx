@@ -1,9 +1,10 @@
-import React from "react";
+import Card from "../card/card";
 import "./card-list.scss";
 /**
  * @typedef {Object} CardItem
  * @property {string} image - URL изображения
  * @property {string} name - Название элемента
+ * @property {string} status - Название элемента
  */
 
 /**
@@ -26,13 +27,15 @@ export default function CardList({ icon, name, items }) {
           <button className="card-list-header-navigations-button">{`>`}</button>
         </div>
       </div>
-      <div>
+      <div className="card-list-body">
         {items.map((item, index) => (
-          <div key={index}>
-            {
-              // card there
-            }
-          </div>
+          <Card
+            name={item.name}
+            image={item.image}
+            index={index}
+            status={item.status}
+            key={`card-${index}`}
+          />
         ))}
       </div>
     </section>

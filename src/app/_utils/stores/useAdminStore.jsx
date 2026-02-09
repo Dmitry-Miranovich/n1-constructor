@@ -6,12 +6,15 @@ export const useAdminStore = create((set, get) => ({
   banners: [],
   cards: [],
   cardTypes: [],
+  blocks: [],
+  color: null,
 
   // === СОСТОЯНИЕ РЕДАКТИРОВАНИЯ ДЛЯ КАЖДОГО ТИПА ===
   editModes: {
     banners: { id: -1, mode: SettingsMode.VIEW },
     cards: { id: -1, mode: SettingsMode.VIEW },
     cardTypes: { id: -1, mode: SettingsMode.VIEW },
+    blocks: { id: -1, mode: SettingsMode.VIEW },
   },
 
   // === УНИВЕРСАЛЬНЫЕ МЕТОДЫ ===

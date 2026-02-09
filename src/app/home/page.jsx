@@ -1,39 +1,107 @@
 import Carousel from "../common/carousel";
-import pic1 from "../_assets/pictures/pic-1.webp";
 import "./page.scss";
 import NavList from "../common/nav-list/nav-list";
-import { navItemsDefault } from "./_utils/nav-items";
-import CardList from "../common/card-list/card-list";
 import { useGet } from "../_utils/hooks/useGet";
-import { useEffect } from "react";
+import CardList from "../common/card-list/card-list";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
-  const { data } = useGet("banner");
+  const { data: banners } = useGet("banner");
+  const { data: blocks } = useGet("blocks");
+  const { data: color } = useGet("colorBG");
   const { data: cardTypes } = useGet("cardTypes");
 
+  const [currentCardsType, setCurrentCardsType] = useState(null);
+
+  const { data: cards, refetch } = useGet(
+    "cards",
+    {
+      filterBy: {
+        key: "type",
+        value: currentCardsType ? currentCardsType.filter : "",
+      },
+    },
+    false,
+  );
+
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_URL);
-  }, [data]);
+    if (cardTypes && cardTypes.length > 0) {
+      setCurrentCardsType(cardTypes[0]);
+    }
+  }, [cardTypes]);
+
+  useEffect(() => {
+    if (currentCardsType) {
+      refetch();
+    }
+  }, [currentCardsType]);
+
+  useEffect(() => {
+    console.log(cards);
+  }, [cards]);
+
+  const renderBlocks = () => {
+    return blocks.map((block, index) => {
+      switch (block.type) {
+        case "banners": {
+          return (
+            banners &&
+            banners.length > 0 && (
+              <Carousel
+                key={`block-${index}`}
+                images={banners.map((banner) => ({
+                  src: `${process.env.REACT_APP_API_URL}${banner.imageUrl}`,
+                  value: banner.name,
+                  href: "",
+                }))}
+                autoPlay={false}
+              />
+            )
+          );
+        }
+        case "cards": {
+          return (
+            currentCardsType && (
+              <CardList
+                key={`block-${index}`}
+                items={cards.map((card) => ({
+                  name: card.name,
+                  status: card.status,
+                  image: card.imageUrl,
+                }))}
+                icon={`${process.env.REACT_APP_API_URL}${currentCardsType.icon}`}
+                name={currentCardsType.name}
+              />
+            )
+          );
+        }
+        case "cardTypes": {
+          return (
+            <NavList
+              key={`block-${index}`}
+              items={cardTypes.map((cardType) => ({
+                icon: `${cardType.icon}`,
+                name: cardType.name,
+                filter: cardType.filter,
+              }))}
+              onClick={(filter) => setCurrentCardsType(filter)}
+            />
+          );
+        }
+        default:
+          <p>Blocks Not Found</p>;
+      }
+    });
+  };
 
   return (
-    <div className="page">
-      {data && data.length > 0 && (
-        <Carousel
-          images={data.map((banner) => ({
-            src: `${process.env.REACT_APP_API_URL}${banner.imageUrl}`,
-            value: banner.name,
-            href: "",
-          }))}
-          autoPlay={false}
-        />
-      )}
-      <NavList
-        items={cardTypes.map((cardType) => ({
-          icon: `${process.env.REACT_APP_API_URL}${cardType.icon}`,
-          name: cardType.name,
-        }))}
-      />
-      {/* <CardList items={[]} icon={pic1} name="Top" /> */}
+    <div
+      className="page"
+      style={{
+        background: color && color.length > 0 ? color[0].value : "#FFF",
+      }}
+    >
+      {renderBlocks()}
     </div>
   );
 }

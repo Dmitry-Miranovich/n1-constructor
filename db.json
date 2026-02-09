@@ -1,15 +1,21 @@
 {
+  "colorBG": [
+    {
+      "id": "color",
+      "value": "#814b4b"
+    }
+  ],
   "blocks": [
     {
-      "id": "1",
-      "type": "banner"
-    },
-    {
-      "id": "2",
+      "id": "0",
       "type": "cardTypes"
     },
     {
-      "id": "3",
+      "id": "1",
+      "type": "banners"
+    },
+    {
+      "id": "2",
       "type": "cards"
     }
   ],
@@ -33,20 +39,68 @@
       "filter": "213"
     }
   ],
+  "cards": [
+    {
+      "id": "0",
+      "name": "asdasd",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "asdasd",
+      "status": "standard",
+      "href": "asdasd"
+    },
+    {
+      "id": "1",
+      "name": "123123",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "asdasd",
+      "status": "standard",
+      "href": "asdasd"
+    },
+    {
+      "id": "2",
+      "name": "asdasd",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "zzzz",
+      "status": "standard",
+      "href": "asdasd"
+    },
+    {
+      "id": "3",
+      "name": "",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "213",
+      "status": "exclusive",
+      "href": ""
+    },
+    {
+      "id": "4",
+      "name": "21231",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "asdasdasd",
+      "status": "standard",
+      "href": "asd"
+    }
+  ],
   "banner": [
     {
       "id": "0",
       "name": "asdasdasd21231",
+      "provider": "Netent",
+      "description": "This is super mega hyper amazing",
       "imageUrl": "/uploads/banners/banner-2.webp"
     },
     {
       "id": "1",
       "name": "1231231232121ffsdfsdf",
-      "imageUrl": "/uploads/banners/banner-1.webp"
+      "provider": "",
+      "description": "",
+      "imageUrl": "/uploads/banners/banner-3.webp"
     },
     {
       "id": "2",
-      "name": "asdasd",
+      "name": "Name",
+      "provider": "",
+      "description": "",
       "imageUrl": "/uploads/banners/banner-2.webp"
     }
   ]

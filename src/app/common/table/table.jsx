@@ -24,6 +24,7 @@ import { bannerTableIcons } from "../../admin/_components/banner-panel/banner-pa
  * @property {string} entityApiName
  * @property {string} title
  * @property {*} addEntity
+ * @property {React.ReactNode} [options]
  */
 
 /**
@@ -35,6 +36,7 @@ export default function Table({
   entityApiName,
   title,
   addEntity,
+  options,
 }) {
   const {
     handleAdd,
@@ -50,15 +52,19 @@ export default function Table({
   } = useBannerAPI(entityType, entityApiName);
   return (
     <div className="table-main">
-      <div className="table-main-options">
-        <p className="table-main-options-title">{title}</p>
-        <button
-          className="table-main-options-button add"
-          onClick={() => handleAdd(addEntity)}
-        >
-          Add
-        </button>
-      </div>
+      {options ? (
+        options
+      ) : (
+        <div className="table-main-options">
+          <p className="table-main-options-title">{title}</p>
+          <button
+            className="table-main-options-button add"
+            onClick={() => handleAdd(addEntity)}
+          >
+            Add
+          </button>
+        </div>
+      )}
       {entity && entity.length > 0 && (
         <table className="table-main-table">
           <thead className="table-main-table-header">
@@ -99,7 +105,6 @@ export default function Table({
                       );
                     }
                     case "select": {
-                      console.log(cell);
                       return (
                         <td
                           className="table-main-table-body-row-item"
@@ -177,7 +182,7 @@ export default function Table({
                     )}
                   </div>
                 </td>
-                <td className="table-main-table-body-row-item">
+                <td className="table-main-table-body-row-item order-header">
                   <button
                     onClick={() => handleMoveUp(rowIndex)}
                     disabled={rowIndex === 0}

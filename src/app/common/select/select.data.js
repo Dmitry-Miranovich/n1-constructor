@@ -47,4 +47,16 @@ export const IMAGE_LIBRARY = {
       label: "Medal",
     },
   ],
+  cards: [
+    {
+      id: "c1",
+      url: "/uploads/cards/card-1.webp",
+      label: "Guy",
+    },
+    {
+      id: "c2",
+      url: "/uploads/cards/card-2.webp",
+      label: "Guy2",
+    },
+  ],
 };

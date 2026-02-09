@@ -5,7 +5,6 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
 
-  // Dragging states
   const [isDragging, setIsDragging] = useState(false);
   const [startPos, setStartPos] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
@@ -19,11 +18,9 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  // --- Drag Logic ---
   const handleDragStart = (e) => {
     setIsAutoPlaying(false);
     setIsDragging(true);
-    // Support both mouse and touch
     const clientX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
     setStartPos(clientX);
   };
@@ -38,7 +35,7 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
   const handleDragEnd = () => {
     if (!isDragging) return;
 
-    const threshold = 50; // pixels needed to trigger slide change
+    const threshold = 50;
     if (dragOffset < -threshold) {
       goToNextSlide();
     } else if (dragOffset > threshold) {
@@ -56,8 +53,6 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
     return () => clearInterval(timer);
   }, [currentIndex, isAutoPlaying, isDragging]);
 
-  // Calculate the final transform
-  // We combine the current index (-100% per slide) with the current pixel drag offset
   const transformStyle = {
     transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`,
     transition: isDragging ? "none" : "transform 0.5s ease-out",
@@ -80,8 +75,6 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
       >
         ‹
       </button>
-
-      {/* Apply the transform style here */}
       <div
         className="carousel-container-slides"
         style={transformStyle}

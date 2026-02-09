@@ -3,35 +3,11 @@ import { useBannerAPI } from "../../../_utils/hooks/useBannerAPI";
 import Table from "../../../common/table";
 import { cardsTypesHeader } from "./cards-types-panel.data";
 import "./cards-types-panel.scss";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function CardsTypesPanel({ entityType, entityApiName }) {
-  const {
-    handleSave,
-    getEditMode,
-    entity: cardsTypes,
-  } = useBannerAPI(entityType, entityApiName);
-
+  const { entity: cardsTypes } = useBannerAPI(entityType, entityApiName);
   const tableRef = useRef(null);
-  //   useEffect(() => {
-  //     const handleClickOutside = (event) => {
-  //       if (tableRef.current && !tableRef.current.contains(event.target)) {
-  //         handleSave(getEditMode(entityType).id);
-  //       }
-  //     };
-
-  //     document.addEventListener("mousedown", handleClickOutside);
-  //     return () => {
-  //       document.removeEventListener("mousedown", handleClickOutside);
-  //     };
-  //   }, []);
-
-  /**
-   * "id": "0",
-      "name": "John Doe",
-      "icon": "",
-      "filter": ""
-   */
   return (
     <div className="cards-types-panel" ref={tableRef}>
       {cardsTypes && (

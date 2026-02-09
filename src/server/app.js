@@ -2,9 +2,48 @@ const API_URL = "http://localhost:3001";
 
 export const api = {
   async get(resource, params = "") {
-    const response = await fetch(`${API_URL}/${resource}${params}`);
-    if (!response.ok) throw new Error("Network error");
-    return await response.json();
+    let url = `${API_URL}/${resource}`;
+
+    // if (params) {
+    //   if (typeof params === "object") {
+    //     const query = new URLSearchParams(params).toString();
+    //     url += query ? `?${query}` : "";
+    //   } else if (typeof params === "string") {
+    //     if (params.startsWith("?") || params.startsWith("/")) {
+    //       url += params;
+    //     } else {
+    //       url += `/${params}`;
+    //     }
+    //   } else if (typeof params === "number") {
+    //     url += `/${params}`;
+    //   }
+    // }
+
+    console.log(`GET: ${url}`);
+
+    const response = await fetch(url);
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(
+        `HTTP ${response.status}: ${error || response.statusText}`,
+      );
+    }
+    let data = await response.json();
+    if (typeof params === "object") {
+      const entries = Object.entries(params);
+      entries.forEach(([key, entry]) => {
+        switch (key) {
+          case "filterBy": {
+            data = data.filter((item) => item[entry.key] === entry.value);
+            break;
+          }
+          default:
+            break;
+        }
+      });
+    }
+
+    return data;
   },
   async post(resource, data) {
     const response = await fetch(`${API_URL}/${resource}`, {

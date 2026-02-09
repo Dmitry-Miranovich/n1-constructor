@@ -10,4 +10,11 @@ export const bannerTableIcons = {
   edit,
 };
 
-export const bannerHeaderNames = ["ID", "Name", "ImageUrl", "Actions"];
+export const bannerHeaderNames = [
+  "ID",
+  "Name",
+  "Provider",
+  "Description",
+  "ImageUrl",
+  "Actions",
+];

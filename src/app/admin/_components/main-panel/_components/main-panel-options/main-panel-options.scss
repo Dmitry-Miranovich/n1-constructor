@@ -1,0 +1,42 @@
+@import "../../../../../styles/_functions/functions.scss";
+
+.main-panel-options {
+  display: flex;
+  padding: toRem(16);
+  background: #fff;
+  align-items: center;
+  justify-content: space-between;
+  &-title {
+    @include font-roboto(24, 700, 32);
+    color: #000;
+  }
+  &-controls {
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+  }
+  &-color-picker {
+    @include font-roboto(16, 500, 24);
+    display: flex;
+    align-items: center;
+    gap: toRem(12);
+    padding: toRem(12);
+    & > input {
+      cursor: pointer;
+    }
+  }
+  &-button {
+    @include font-roboto(16, 500, 24);
+    cursor: pointer;
+    width: toRem(100);
+    height: fit-content;
+    padding: toRem(12);
+    &.download {
+      background: #b58800;
+      border: none;
+      border-radius: toRem(8);
+      color: white;
+      width: fit-content;
+    }
+  }
+}
