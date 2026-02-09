@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import "./admin-panel.scss";
 import { SIDEBAR_TYPES } from "../sidebar/sidebar.data";
 import BannerPanel from "../banner-panel";
+import CardsTypesPanel from "../cards-types-panel/cards-types-panel";
 
 export default function AdminPanel({ type }) {
   const renderPanel = useMemo(() => {
@@ -13,7 +14,7 @@ export default function AdminPanel({ type }) {
         return <BannerPanel />;
       }
       case SIDEBAR_TYPES[2]: {
-        return;
+        return <CardsTypesPanel />;
       }
       case SIDEBAR_TYPES[3]: {
         return;

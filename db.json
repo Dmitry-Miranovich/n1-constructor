@@ -29,19 +29,24 @@
   ],
   "banner": [
     {
-      "id": 0,
+      "id": "0",
+      "name": "1231231232",
+      "imageUrl": "/uploads/banners/banner-2.webp"
+    },
+    {
+      "id": "1",
       "name": "asdasd",
       "imageUrl": "/uploads/banners/banner-3.webp"
     },
     {
-      "id": 1,
-      "name": "123123123",
-      "imageUrl": "/uploads/banners/banner-2.webp"
-    },
-    {
-      "id": 2,
+      "id": "2",
       "name": "wqeqweqwe",
       "imageUrl": "/uploads/banners/banner-4.webp"
+    },
+    {
+      "id": "3",
+      "name": "asd",
+      "imageUrl": "/uploads/banners/banner-2.webp"
     }
   ]
 }

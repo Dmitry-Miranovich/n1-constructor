@@ -16,14 +16,6 @@ export default function HomePage() {
 
   return (
     <div className="page">
-      {/* <img
-        src={
-          data && data.length > 0
-            ? `${process.env.REACT_APP_API_URL}${data[0].imageUrl}`
-            : ""
-        }
-        alt="Some"
-      /> */}
       {data && data.length > 0 && (
         <Carousel
           images={data.map((banner) => ({
@@ -35,7 +27,7 @@ export default function HomePage() {
         />
       )}
       <NavList items={navItemsDefault} />
-      <CardList items={[]} icon={pic1} name="Top" />
+      {/* <CardList items={[]} icon={pic1} name="Top" /> */}
     </div>
   );
 }

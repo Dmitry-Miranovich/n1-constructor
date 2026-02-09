@@ -8,8 +8,6 @@ export const useBannerStore = create((set) => ({
     id: -1,
     mode: SettingsMode.VIEW,
   },
-  editBanner: null,
-
   setBanners: (newBanners) => set({ banners: newBanners }),
 
   setEditBanner: (banner) => set({ editBanner: banner }),
@@ -21,14 +19,6 @@ export const useBannerStore = create((set) => ({
       ),
     })),
 
-  updateEditBannerField: (field, newValue) => {
-    set((state) => ({
-      editBanner: state.editBanner
-        ? { ...state.editBanner, [field]: newValue }
-        : null,
-    }));
-  },
-
   setEditMode: (id, mode) =>
     set({
       editMode: { id, mode },
@@ -37,32 +27,42 @@ export const useBannerStore = create((set) => ({
   addBanner: (banner) =>
     set((state) => ({ banners: [...state.banners, banner] })),
 
-  // НОВЫЕ ФУНКЦИИ ДЛЯ ПЕРЕМЕЩЕНИЯ
   moveBannerUp: (index) =>
     set((state) => {
-      if (index <= 0) return state; // Нельзя поднять первую строку
+      if (index <= 0) return state;
+
       const newBanners = [...state.banners];
-      // Меняем местами текущий и предыдущий элемент
       [newBanners[index], newBanners[index - 1]] = [
         newBanners[index - 1],
         newBanners[index],
       ];
-      return { banners: newBanners };
+
+      const renumberedBanners = newBanners.map((banner, idx) => ({
+        ...banner,
+        id: idx,
+      }));
+
+      return { banners: renumberedBanners };
     }),
 
   moveBannerDown: (index) =>
     set((state) => {
-      if (index >= state.banners.length - 1) return state; // Нельзя опустить последнюю
+      if (index >= state.banners.length - 1) return state;
+
       const newBanners = [...state.banners];
-      // Меняем местами текущий и следующий элемент
       [newBanners[index], newBanners[index + 1]] = [
         newBanners[index + 1],
         newBanners[index],
       ];
-      return { banners: newBanners };
+
+      const renumberedBanners = newBanners.map((banner, idx) => ({
+        ...banner,
+        id: idx,
+      }));
+
+      return { banners: renumberedBanners };
     }),
 
-  // Удаление
   deleteBanner: (index) =>
     set((state) => ({
       banners: state.banners.filter((_, i) => i !== index),

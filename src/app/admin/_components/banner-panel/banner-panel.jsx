@@ -1,7 +1,7 @@
 import { useGet } from "../../../_utils/hooks/useGet";
 import { bannerHeaderNames, bannerTableIcons } from "./banner-panel.data";
 import "./banner-panel.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Input from "../../../common/input";
 import { useUpdate } from "../../../_utils/hooks/useUpdate";
 import { useBannerStore } from "../../../_utils/stores/useBannerStore";
@@ -9,10 +9,9 @@ import Select from "../../../common/select";
 import { usePost } from "../../../_utils/hooks/usePost";
 import { SettingsMode } from "../../../_utils/enums/settings";
 import { useDelete } from "../../../_utils/hooks/useDelete";
-import { api } from "../../../../server/app";
 
-export default function BannerPanel() {
-  const { data } = useGet("banner");
+export default function BannerPanel({ entityType = "banner" }) {
+  const { data, refetch } = useGet(entityType);
   const { fetch: update } = useUpdate();
   const { fetch: post } = usePost();
   const { fetch: remove } = useDelete();
@@ -54,28 +53,30 @@ export default function BannerPanel() {
     setEditMode(id, SettingsMode.EDIT);
   };
 
-  const handleSave = (id) => {
-    console.log("Saving row:", banners[id], `id: ${id}`, editMode);
+  const handleSave = async (id) => {
+    // console.log("Saving row:", banners[id], `id: ${id}`, editMode);
     switch (editMode.mode) {
       case SettingsMode.EDIT: {
-        update("banner", id, banners[id]);
+        await update("banner", id, banners[id]);
         break;
       }
       case SettingsMode.ADD: {
-        post("banner", banners[id]);
+        await post("banner", banners[id]);
         break;
       }
       default: {
         setEditMode(-1, SettingsMode.VIEW);
       }
     }
+
     setEditMode(-1, SettingsMode.VIEW);
+    refetch();
   };
 
   const handleAdd = () => {
     const id = banners.length;
     addBanner({
-      id: id,
+      id: `${id}`,
       name: "",
       imageUrl: "",
     });
@@ -88,82 +89,50 @@ export default function BannerPanel() {
       setBanners([...data]);
     }
   };
-  const [pendingOrder, setPendingOrder] = useState([]);
 
-  const handleMoveUp = (index) => {
+  const handleDelete = (id) => {
+    deleteBanner(id);
+    remove("banner", id);
+  };
+
+  const handleMoveUp = async (index) => {
     if (index === 0) return;
-
-    const newBanners = [...banners];
-    [newBanners[index], newBanners[index - 1]] = [
-      newBanners[index - 1],
-      newBanners[index],
-    ];
-
-    // Только локально, без сервера
-    setBanners(newBanners);
-    setPendingOrder(newBanners); // Сохраняем для возможного сохранения
+    moveBannerUp(index);
+    setEditMode(index, SettingsMode.ORDER);
   };
 
   const handleMoveDown = async (index) => {
     if (index === banners.length - 1) return;
+    moveBannerDown(index);
+    setEditMode(index, SettingsMode.ORDER);
+  };
 
-    const newBanners = [...banners];
-    [newBanners[index], newBanners[index + 1]] = [
-      newBanners[index + 1],
-      newBanners[index],
-    ];
-
-    setBanners(newBanners);
-
-    try {
-      await api.replaceAll("banner", newBanners);
-      console.log("Order saved to server");
-    } catch (error) {
-      console.error("Failed to save order:", error);
+  useEffect(() => {
+    if (editMode.mode === SettingsMode.ORDER) {
+      updateAllBannersOnServer(banners);
     }
-  };
+  }, [banners]);
 
-  const handleDelete = (index) => {
-    const banner = banners[index];
-    deleteBanner(index);
-    remove("banner", banner.id);
-  };
-  // Добавь эту функцию в компонент
   const updateAllBannersOnServer = async (bannersArray) => {
+    console.log(bannersArray);
     try {
-      // Сначала удаляем все старые
-      const currentBanners = await api.get("banner");
-      for (const banner of currentBanners) {
-        await api.delete("banner", banner.id);
+      for (let i = 0; i < bannersArray.length; i++) {
+        const banner = bannersArray[i];
+        await update("banner", i, banner);
       }
-
-      // Затем создаём новые с новыми ID
-      for (const banner of bannersArray) {
-        await api.post("banner", banner);
-      }
-
-      return true;
+      console.log("All banners updated on server");
     } catch (error) {
       console.error("Failed to update all banners:", error);
       throw error;
     }
   };
 
-  // Кнопка для сохранения порядка
-  const handleSaveOrder = async () => {
-    // Перенумеровываем ID
-    const renumberedBanners = banners.map((banner, idx) => ({
-      ...banner,
-      id: idx,
-    }));
-
-    try {
-      await updateAllBannersOnServer(renumberedBanners);
-      setBanners(renumberedBanners); // Обновляем локально с новыми ID
-      alert("Order saved successfully!");
-    } catch (error) {
-      alert("Failed to save order");
-    }
+  const isEdit = (index) => {
+    return (
+      editMode.mode &&
+      editMode.mode === SettingsMode.EDIT &&
+      editMode.id === index
+    );
   };
 
   return (
@@ -177,13 +146,6 @@ export default function BannerPanel() {
             onClick={() => handleAdd()}
           >
             Add
-          </button>
-          <button
-            className="banner-panel-main-options-button save-order"
-            onClick={handleSaveOrder}
-            style={{ background: "#3498db" }}
-          >
-            Save Order
           </button>
         </div>
         <table className="banner-panel-main-table">
@@ -203,13 +165,13 @@ export default function BannerPanel() {
             </tr>
           </thead>
           <tbody className="banner-panel-main-table-body">
-            {banners.map((row, index) => (
+            {banners.map((_, index) => (
               <tr
                 className="banner-panel-main-table-body-row"
                 key={`row-${index}`}
               >
                 <td className="banner-panel-main-table-body-row-item">
-                  {+row.id + 1}
+                  {index + 1}
                 </td>
                 <td className="banner-panel-main-table-body-row-item">
                   <Input
@@ -217,20 +179,14 @@ export default function BannerPanel() {
                     onChange={(value) =>
                       updateBannerField(index, "name", value)
                     }
-                    readOnly={!(editMode.mode && editMode.id === index)}
+                    readOnly={!isEdit(index)}
                     className="table-input-name"
                   />
                 </td>
                 <td className="banner-panel-main-table-body-row-item">
                   <Select
                     value={banners[index].imageUrl}
-                    readOnly={
-                      !(
-                        editMode.mode &&
-                        editMode.mode !== SettingsMode.VIEW &&
-                        editMode.id === index
-                      )
-                    }
+                    readOnly={!isEdit(index)}
                     onChange={(value) => {
                       updateBannerField(index, "imageUrl", value);
                     }}
@@ -238,9 +194,7 @@ export default function BannerPanel() {
                 </td>
                 <td className="banner-panel-main-table-body-row-item">
                   <div className="banner-panel-main-table-body-row-item-actions">
-                    {editMode &&
-                    editMode.mode !== SettingsMode.VIEW &&
-                    editMode.id === index ? (
+                    {isEdit() ? (
                       <>
                         <button
                           onClick={() => handleSave(index)}
@@ -273,27 +227,24 @@ export default function BannerPanel() {
                     )}
                   </div>
                 </td>
-                {/* Колонка с кнопками перемещения */}
-                <td className="banner-panel-main-table-body-row-item order-cell">
-                  <div className="order-controls">
-                    <button
-                      onClick={() => handleMoveUp(index)}
-                      disabled={index === 0}
-                      className="order-btn up-btn"
-                      title="Move up"
-                    >
-                      ↑
-                    </button>
-                    <span className="position-number">{index + 1}</span>
-                    <button
-                      onClick={() => handleMoveDown(index)}
-                      disabled={index === banners.length - 1}
-                      className="order-btn down-btn"
-                      title="Move down"
-                    >
-                      ↓
-                    </button>
-                  </div>
+                <td className="banner-panel-main-table-body-row-item">
+                  {/* Кнопки перемещения */}
+                  <button
+                    onClick={() => handleMoveUp(index)}
+                    disabled={index === 0}
+                    className="banner-panel-main-table-body-row-item-actions-item move-btn"
+                    title="Move up"
+                  >
+                    ↑
+                  </button>
+                  <button
+                    onClick={() => handleMoveDown(index)}
+                    disabled={index === banners.length - 1}
+                    className="banner-panel-main-table-body-row-item-actions-item move-btn"
+                    title="Move down"
+                  >
+                    ↓
+                  </button>
                 </td>
               </tr>
             ))}
