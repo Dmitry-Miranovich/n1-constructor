@@ -6,6 +6,10 @@
   background: var(--color-card-list-bg);
   padding: toRem(12);
   gap: toRem(24);
+  width: 100%;
+  max-width: toRem(1920);
+  margin: 0 auto;
+  box-sizing: border-box;
   @media (max-width: 1440px) {
     gap: toRem(16);
   }

@@ -4,6 +4,7 @@ import NavList from "../common/nav-list/nav-list";
 import { useGet } from "../_utils/hooks/useGet";
 import CardList from "../common/card-list/card-list";
 import { useEffect, useState } from "react";
+import BannerSlide from "../common/banner-slide/banner-slide";
 
 export default function HomePage() {
   const { data: banners } = useGet("banner");
@@ -49,11 +50,17 @@ export default function HomePage() {
             banners.length > 0 && (
               <Carousel
                 key={`block-${index}`}
-                images={banners.map((banner) => ({
-                  src: `${process.env.REACT_APP_API_URL}${banner.imageUrl}`,
-                  value: banner.name,
-                  href: "",
-                }))}
+                slides={banners.map((banner) => (
+                  <BannerSlide
+                    card={{
+                      image: `${banner.imageUrl}`,
+                      name: banner.name,
+                      description: banner.description,
+                      provider: banner.provider,
+                      href: "",
+                    }}
+                  />
+                ))}
                 autoPlay={false}
               />
             )

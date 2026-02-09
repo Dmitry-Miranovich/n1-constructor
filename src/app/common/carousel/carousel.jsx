@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./carousel.scss";
 
-const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
+const Carousel = ({ slides, autoPlay = true, interval = 3000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
 
@@ -11,11 +11,11 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
   const containerRef = useRef(null);
 
   const goToNextSlide = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
   const goToPrevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
 
   const handleDragStart = (e) => {
@@ -80,14 +80,15 @@ const Carousel = ({ images, autoPlay = true, interval = 3000 }) => {
         style={transformStyle}
         ref={containerRef}
       >
-        {images.map((image, index) => (
+        {slides.map((slide, index) => (
           <div
             className="carousel-container-slides-item"
             key={`carousel-container-slides-item-${index}`}
           >
-            {image.src && (
+            {slide}
+            {/* {image.src && (
               <img src={image.src} alt={`Slide ${index}`} draggable="false" />
-            )}
+            )} */}
           </div>
         ))}
       </div>
