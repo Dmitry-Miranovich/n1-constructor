@@ -29,7 +29,10 @@ export default function BannerSlide({ card }) {
           Check now!
         </a>
       </div>
-      <img src={`${process.env.REACT_APP_API_URL}${image}`} />
+      <img
+        src={`${process.env.REACT_APP_API_URL}${image}`}
+        alt="Banner Slide"
+      />
     </div>
   );
 }
