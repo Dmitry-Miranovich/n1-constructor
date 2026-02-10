@@ -2,13 +2,13 @@
   "colorBG": [
     {
       "id": "color",
-      "value": "#b80f0f"
+      "value": "#6c1ce3"
     }
   ],
   "blocks": [
     {
       "id": "0",
-      "type": "banners"
+      "type": "cardTypes"
     },
     {
       "id": "1",
@@ -16,20 +16,68 @@
     },
     {
       "id": "2",
-      "type": "cardTypes"
+      "type": "banners"
     }
   ],
   "cardTypes": [
     {
       "id": "0",
       "name": "Casinos",
-      "icon": "/uploads/cardTypes/rocket.svg",
+      "icon": "/uploads/cardTypes/chart-2.svg",
       "filter": "casinos"
     }
   ],
   "cards": [
     {
       "id": "0",
+      "name": "Some",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "casinos",
+      "status": "exclusive",
+      "href": "asd"
+    },
+    {
+      "id": "1",
+      "name": "Card 2",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "casinos",
+      "status": "top",
+      "href": "no link"
+    },
+    {
+      "id": "3",
+      "name": "Card 2",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "casinos",
+      "status": "top",
+      "href": "no link"
+    },
+    {
+      "id": "2",
+      "name": "Some",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "casinos",
+      "status": "exclusive",
+      "href": "asd"
+    },
+    {
+      "id": "5",
+      "name": "Some",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "casinos",
+      "status": "exclusive",
+      "href": "asd"
+    },
+    {
+      "id": "4",
+      "name": "Card 2",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "casinos",
+      "status": "top",
+      "href": "no link"
+    },
+    {
+      "id": "6",
       "name": "Some",
       "imageUrl": "/uploads/cards/card-4.webp",
       "type": "casinos",

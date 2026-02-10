@@ -1,12 +1,8 @@
 const collectAllStyles = () => {
   let styles = "";
-
-  // Collect style tags
   document.querySelectorAll("style").forEach((style) => {
     styles += style.outerHTML;
   });
-
-  // Collect from stylesheets
   Array.from(document.styleSheets).forEach((sheet) => {
     try {
       if (sheet.cssRules) {
@@ -14,9 +10,7 @@ const collectAllStyles = () => {
           styles += `<style>${rule.cssText}</style>`;
         });
       }
-    } catch (e) {
-      // Skip cross-origin stylesheets
-    }
+    } catch (e) {}
   });
 
   return styles;

@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
 import "./select.scss";
-import { IMAGE_LIBRARY } from "./select.data";
 
 export default function Select({
   value,

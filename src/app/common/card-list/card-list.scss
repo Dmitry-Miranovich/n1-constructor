@@ -10,24 +10,35 @@
   max-width: toRem(1920);
   margin: 0 auto;
   box-sizing: border-box;
+
   @media (max-width: 1440px) {
     gap: toRem(16);
   }
+
   &-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: center; // Added for better alignment
+
     &-title {
-      @include font-roboto(24, 700, 32);
+      @include font-roboto(24, 700);
       display: flex;
       align-items: center;
       gap: toRem(12);
       color: #fff;
+
+      & > img {
+        width: toRem(32);
+        height: toRem(32);
+      }
     }
+
     &-navigations {
       display: flex;
       align-items: center;
       gap: toRem(8);
+
       &-button {
         cursor: pointer;
         display: flex;
@@ -40,19 +51,77 @@
         border-radius: 50%;
         background-color: rgba($color: #fff, $alpha: 0.2);
         border: 1px solid rgba($color: #fff, $alpha: 0.2);
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+          background-color: rgba($color: #fff, $alpha: 0.3);
+          border-color: rgba($color: #fff, $alpha: 0.4);
+        }
+
+        &:active:not(:disabled) {
+          transform: scale(0.95);
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
       }
     }
   }
+
   &-body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: toRem(32);
+
     @media (max-width: 1600px) {
       gap: toRem(24);
     }
+
     @media (max-width: 1440px) {
       gap: toRem(16);
+    }
+  }
+  &-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: toRem(8);
+    padding-top: toRem(12);
+    border-top: 1px solid rgba($color: #fff, $alpha: 0.1);
+
+    &-counter {
+      @include font-roboto(14, 500);
+      color: rgba($color: #fff, $alpha: 0.7);
+      text-align: center;
+
+      @media (max-width: 1440px) {
+        @include font-roboto(12, 500);
+      }
+    }
+  }
+
+  // Alternative: Position counter next to navigation buttons
+  &-header-with-counter {
+    .card-list-header-navigations {
+      display: flex;
+      align-items: center;
+      gap: toRem(16);
+    }
+
+    .card-list-counter {
+      @include font-roboto(14, 500);
+      color: rgba($color: #fff, $alpha: 0.7);
+      min-width: toRem(120);
+      text-align: center;
+
+      @media (max-width: 1440px) {
+        @include font-roboto(12, 500);
+        min-width: toRem(100);
+      }
     }
   }
 }

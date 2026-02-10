@@ -110,7 +110,6 @@ export const useBannerAPI = (entityType, entityApiName) => {
   }, [entity]);
 
   const updateAllBannersOnServer = async (bannersArray) => {
-    console.log(bannersArray, buffer);
     try {
       for (let i = 0; i < bannersArray.length; i++) {
         const banner = bannersArray[i];

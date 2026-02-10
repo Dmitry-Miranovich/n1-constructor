@@ -4,25 +4,21 @@ export const IMAGE_LIBRARY = {
       id: "b1",
       url: "/uploads/banners/banner-1.webp",
       label: "Gold Casino Banner",
-      size: "400x200",
     },
     {
       id: "b2",
       url: "/uploads/banners/banner-2.webp",
       label: "Slots Machine Banner",
-      size: "400x200",
     },
     {
       id: "b3",
       url: "/uploads/banners/banner-3.webp",
       label: "Welcome Bonus 100%",
-      size: "400x200",
     },
     {
       id: "b4",
       url: "/uploads/banners/banner-4.webp",
       label: "VIP Lounge",
-      size: "400x200",
     },
   ],
   cardTypes: [
@@ -45,6 +41,31 @@ export const IMAGE_LIBRARY = {
       id: "ct4",
       url: "/uploads/cardTypes/medal.svg",
       label: "Medal",
+    },
+    {
+      id: "ct5",
+      url: "/uploads/cardTypes/rate.svg",
+      label: "Rate",
+    },
+    {
+      id: "ct6",
+      url: "/uploads/cardTypes/chart-1.svg",
+      label: "Chart",
+    },
+    {
+      id: "ct7",
+      url: "/uploads/cardTypes/chart-2.svg",
+      label: "Support",
+    },
+    {
+      id: "ct8",
+      url: "/uploads/cardTypes/rate.svg",
+      label: "Rate",
+    },
+    {
+      id: "ct9",
+      url: "/uploads/cardTypes/person.svg",
+      label: "Person",
     },
   ],
   cards: [

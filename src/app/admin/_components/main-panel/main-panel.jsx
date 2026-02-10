@@ -74,6 +74,7 @@ export default function MainPanel({ entityType, entityApiName }) {
           entityType={entityType}
           entityApiName={entityApiName}
           title="Components on the Main Page"
+          actionsAccessibility={{ edit: true, delete: false }}
           options={
             <MainPanelOptions
               title={`Components on the Main Page`}

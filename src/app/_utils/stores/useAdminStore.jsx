@@ -2,22 +2,18 @@ import { create } from "zustand";
 import { SettingsMode } from "../enums/settings";
 
 export const useAdminStore = create((set, get) => ({
-  // === ДАННЫЕ ВСЕХ ТИПОВ ===
   banners: [],
   cards: [],
   cardTypes: [],
   blocks: [],
   color: "",
 
-  // === СОСТОЯНИЕ РЕДАКТИРОВАНИЯ ДЛЯ КАЖДОГО ТИПА ===
   editModes: {
     banners: { id: -1, mode: SettingsMode.VIEW },
     cards: { id: -1, mode: SettingsMode.VIEW },
     cardTypes: { id: -1, mode: SettingsMode.VIEW },
     blocks: { id: -1, mode: SettingsMode.VIEW },
   },
-
-  // === УНИВЕРСАЛЬНЫЕ МЕТОДЫ ===
 
   // Установить данные для типа
   setData: (entityType, data) => set({ [entityType]: data }),
@@ -77,12 +73,6 @@ export const useAdminStore = create((set, get) => ({
       const items = [...state[entityType]];
       [items[index], items[index - 1]] = [items[index - 1], items[index]];
 
-      console.log(items);
-      // // Переиндексируем если нужно
-      // const renumberedItems = items.map((item, idx) => ({
-      //   ...item,
-      // }));
-
       return { [entityType]: items };
     }),
 
@@ -93,15 +83,8 @@ export const useAdminStore = create((set, get) => ({
       const items = [...state[entityType]];
       [items[index], items[index + 1]] = [items[index + 1], items[index]];
 
-      // const renumberedItems = items.map((item, idx) => ({
-      //   ...item,
-      //   id: idx,
-      // }));
-
       return { [entityType]: items };
     }),
-
-  // === СЕЛЕКТОРЫ ДЛЯ ТАБЛИЦ ===
 
   // Получить данные для таблицы
   getTableData: (entityType) => {

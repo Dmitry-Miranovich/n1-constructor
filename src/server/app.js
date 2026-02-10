@@ -3,24 +3,6 @@ const API_URL = "http://localhost:3001";
 export const api = {
   async get(resource, params = "") {
     let url = `${API_URL}/${resource}`;
-
-    // if (params) {
-    //   if (typeof params === "object") {
-    //     const query = new URLSearchParams(params).toString();
-    //     url += query ? `?${query}` : "";
-    //   } else if (typeof params === "string") {
-    //     if (params.startsWith("?") || params.startsWith("/")) {
-    //       url += params;
-    //     } else {
-    //       url += `/${params}`;
-    //     }
-    //   } else if (typeof params === "number") {
-    //     url += `/${params}`;
-    //   }
-    // }
-
-    console.log(`GET: ${url}`);
-
     const response = await fetch(url);
     if (!response.ok) {
       const error = await response.text();

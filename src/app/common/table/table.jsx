@@ -26,6 +26,7 @@ import { SettingsMode } from "src/app/_utils/enums/settings";
  * @property {string} title
  * @property {*} addEntity
  * @property {React.ReactNode} [options]
+ * @property {{edit: boolean, delete: boolean}} [actionsAccessibility]
  */
 
 /**
@@ -38,6 +39,10 @@ export default function Table({
   title,
   addEntity,
   options,
+  actionsAccessibility = {
+    edit: true,
+    delete: true,
+  },
 }) {
   const {
     handleAdd,
@@ -240,18 +245,27 @@ export default function Table({
                           </>
                         ) : (
                           <>
-                            <button
-                              onClick={() => handleEdit(entity[rowIndex].id)}
-                              className="table-main-table-body-row-item-actions-item"
-                            >
-                              <img src={bannerTableIcons.edit} alt="Edit" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(entity[rowIndex].id)}
-                              className="table-main-table-body-row-item-actions-item"
-                            >
-                              <img src={bannerTableIcons.remove} alt="Remove" />
-                            </button>
+                            {actionsAccessibility.edit && (
+                              <button
+                                onClick={() => handleEdit(entity[rowIndex].id)}
+                                className="table-main-table-body-row-item-actions-item"
+                              >
+                                <img src={bannerTableIcons.edit} alt="Edit" />
+                              </button>
+                            )}
+                            {actionsAccessibility.delete && (
+                              <button
+                                onClick={() =>
+                                  handleDelete(entity[rowIndex].id)
+                                }
+                                className="table-main-table-body-row-item-actions-item"
+                              >
+                                <img
+                                  src={bannerTableIcons.remove}
+                                  alt="Remove"
+                                />
+                              </button>
+                            )}
                           </>
                         )}
                       </div>

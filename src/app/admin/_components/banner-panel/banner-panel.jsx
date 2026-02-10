@@ -1,4 +1,4 @@
-import { bannerHeaderNames, bannerTableIcons } from "./banner-panel.data";
+import { bannerHeaderNames } from "./banner-panel.data";
 import "./banner-panel.scss";
 import { useEffect, useRef } from "react";
 import { useBannerAPI } from "../../../_utils/hooks/useBannerAPI";
