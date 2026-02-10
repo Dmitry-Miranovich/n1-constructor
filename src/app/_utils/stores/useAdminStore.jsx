@@ -43,7 +43,7 @@ export const useAdminStore = create((set, get) => ({
 
   deleteItemByIndex: (entityType, index) =>
     set((state) => ({
-      [entityType]: state[entityType].filter((_, i) => i !== index),
+      [entityType]: state[entityType].filter((entity) => entity.id !== index),
     })),
 
   updateFieldByIndex: (entityType, index, field, value) =>
@@ -77,13 +77,13 @@ export const useAdminStore = create((set, get) => ({
       const items = [...state[entityType]];
       [items[index], items[index - 1]] = [items[index - 1], items[index]];
 
-      // Переиндексируем если нужно
-      const renumberedItems = items.map((item, idx) => ({
-        ...item,
-        id: idx,
-      }));
+      console.log(items);
+      // // Переиндексируем если нужно
+      // const renumberedItems = items.map((item, idx) => ({
+      //   ...item,
+      // }));
 
-      return { [entityType]: renumberedItems };
+      return { [entityType]: items };
     }),
 
   moveItemDown: (entityType, index) =>
@@ -93,12 +93,12 @@ export const useAdminStore = create((set, get) => ({
       const items = [...state[entityType]];
       [items[index], items[index + 1]] = [items[index + 1], items[index]];
 
-      const renumberedItems = items.map((item, idx) => ({
-        ...item,
-        id: idx,
-      }));
+      // const renumberedItems = items.map((item, idx) => ({
+      //   ...item,
+      //   id: idx,
+      // }));
 
-      return { [entityType]: renumberedItems };
+      return { [entityType]: items };
     }),
 
   // === СЕЛЕКТОРЫ ДЛЯ ТАБЛИЦ ===

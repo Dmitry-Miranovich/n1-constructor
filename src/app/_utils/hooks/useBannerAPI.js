@@ -37,14 +37,14 @@ export const useBannerAPI = (entityType, entityApiName) => {
   const handleEdit = (id) => {
     setEditMode(entityType, id, SettingsMode.EDIT);
   };
-  const handleSave = async (id) => {
+  const handleSave = async (id, rowId) => {
     switch (getEditMode(entityType).mode) {
       case SettingsMode.EDIT: {
-        await update(entityApiName, id, entity[id]);
+        await update(entityApiName, id, entity[rowId]);
         break;
       }
       case SettingsMode.ADD: {
-        await post(entityApiName, entity[id]);
+        await post(entityApiName, entity[rowId]);
         break;
       }
       case SettingsMode.COPY: {
@@ -84,12 +84,14 @@ export const useBannerAPI = (entityType, entityApiName) => {
 
   const handleMoveUp = async (index) => {
     if (index === 0) return;
+    setBuffer([...entity]);
     moveItemUp(entityType, index);
     setEditMode(entityType, index, SettingsMode.ORDER);
   };
 
   const handleMoveDown = async (index) => {
     if (index === entity.length - 1) return;
+    setBuffer([...entity]);
     moveItemDown(entityType, index);
     setEditMode(entityType, index, SettingsMode.ORDER);
   };
@@ -100,18 +102,20 @@ export const useBannerAPI = (entityType, entityApiName) => {
   useEffect(() => {
     if (
       getEditMode(entityType) &&
-      getEditMode(entityType).mode === SettingsMode.ORDER
+      getEditMode(entityType).mode === SettingsMode.ORDER &&
+      buffer.length > 0
     ) {
       updateAllBannersOnServer(entity);
     }
   }, [entity]);
 
   const updateAllBannersOnServer = async (bannersArray) => {
-    console.log(bannersArray);
+    console.log(bannersArray, buffer);
     try {
       for (let i = 0; i < bannersArray.length; i++) {
         const banner = bannersArray[i];
-        await update(entityApiName, i, banner);
+        const origBanner = buffer[i];
+        await update(entityApiName, origBanner.id, banner);
       }
     } catch (error) {
       console.error("Failed to update all banners:", error);
@@ -128,7 +132,7 @@ export const useBannerAPI = (entityType, entityApiName) => {
       getEditMode(entityType).mode &&
       (getEditMode(entityType).mode === SettingsMode.EDIT ||
         getEditMode(entityType).mode === SettingsMode.ADD) &&
-      getEditMode(entityType).id === index
+      +getEditMode(entityType).id === +index
     );
   };
 

@@ -1,0 +1,30 @@
+@import "../../../../styles/_functions/functions.scss";
+
+$exclusive-gradient: linear-gradient(
+  90deg,
+  #e8a8f5 0%,
+  #f9f871 50%,
+  #7cfbd7 100%
+);
+
+.card-tag {
+  @include font-roboto(14, 700);
+  position: absolute;
+  top: toRem(20);
+  left: toRem(10);
+  width: fit-content;
+  color: #000;
+  border-radius: toRem(16);
+  padding: toRem(8);
+  z-index: 2;
+  text-transform: uppercase;
+  &.top {
+    background: red;
+  }
+  &.exclusive {
+    background: $exclusive-gradient;
+  }
+  &.limited {
+    background: blue;
+  }
+}

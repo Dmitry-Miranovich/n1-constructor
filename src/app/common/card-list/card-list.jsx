@@ -22,10 +22,10 @@ export default function CardList({ icon, name, items }) {
           <img src={icon} alt="Card List Icon" />
           <p>{name}</p>
         </div>
-        <div className="card-list-header-navigations">
+        {/* <div className="card-list-header-navigations">
           <button className="card-list-header-navigations-button">{`<`}</button>
           <button className="card-list-header-navigations-button">{`>`}</button>
-        </div>
+        </div> */}
       </div>
       <div className="card-list-body">
         {items.map((item, index) => (

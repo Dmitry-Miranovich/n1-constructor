@@ -1,3 +1,4 @@
+import CardTag from "./_components/card-tag";
 import "./card.scss";
 
 /**
@@ -11,6 +12,7 @@ import "./card.scss";
 export default function Card({ image, name, index, status }) {
   return (
     <article className="card" aria-label={`Card-${name}`}>
+      <CardTag status={status} />
       <img
         className="card-image"
         src={`${process.env.REACT_APP_API_URL}${image}`}

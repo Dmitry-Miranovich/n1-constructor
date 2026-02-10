@@ -12,5 +12,6 @@
     height: 100%;
     border-radius: toRem(16);
     object-fit: cover;
+    pointer-events: none;
   }
 }

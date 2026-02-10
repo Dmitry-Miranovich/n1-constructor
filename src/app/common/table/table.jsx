@@ -167,7 +167,7 @@ export default function Table({
                                   rowIndex,
                                 )
                               }
-                              readOnly={!isEdit(rowIndex)}
+                              readOnly={!isEdit(entity[rowIndex].id)}
                               className="table-input-name"
                             />
                           </td>
@@ -181,7 +181,7 @@ export default function Table({
                           >
                             <Select
                               value={entity[rowIndex][cell.propertyName]}
-                              readOnly={!isEdit(rowIndex)}
+                              readOnly={!isEdit(entity[rowIndex].id)}
                               options={cell.options ?? []}
                               onChange={(value) => {
                                 handleOnChange(
@@ -221,10 +221,12 @@ export default function Table({
                   <>
                     <td className="table-main-table-body-row-item">
                       <div className="table-main-table-body-row-item-actions">
-                        {isEdit(rowIndex) ? (
+                        {isEdit(entity[rowIndex].id) ? (
                           <>
                             <button
-                              onClick={() => handleSave(rowIndex)}
+                              onClick={() =>
+                                handleSave(entity[rowIndex].id, rowIndex)
+                              }
                               className="table-main-table-body-row-item-actions-item"
                             >
                               <img src={bannerTableIcons.check} alt="Save" />
@@ -239,13 +241,13 @@ export default function Table({
                         ) : (
                           <>
                             <button
-                              onClick={() => handleEdit(rowIndex)}
+                              onClick={() => handleEdit(entity[rowIndex].id)}
                               className="table-main-table-body-row-item-actions-item"
                             >
                               <img src={bannerTableIcons.edit} alt="Edit" />
                             </button>
                             <button
-                              onClick={() => handleDelete(rowIndex)}
+                              onClick={() => handleDelete(entity[rowIndex].id)}
                               className="table-main-table-body-row-item-actions-item"
                             >
                               <img src={bannerTableIcons.remove} alt="Remove" />

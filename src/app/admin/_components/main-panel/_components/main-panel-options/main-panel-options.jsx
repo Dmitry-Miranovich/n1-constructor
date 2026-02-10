@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import "./main-panel-options.scss";
 import { useAdminStore } from "src/app/_utils/stores/useAdminStore";
-import { usePost } from "src/app/_utils/hooks/usePost";
 import { useUpdate } from "src/app/_utils/hooks/useUpdate";
 
-export default function MainPanelOptions({ title, entityType, entityApiName }) {
+export default function MainPanelOptions({ title, entityType, onExport }) {
   const { setData, color } = useAdminStore((state) => state);
   const { fetch: update } = useUpdate();
   const onBlur = () => {
@@ -36,7 +34,7 @@ export default function MainPanelOptions({ title, entityType, entityApiName }) {
         {/* Export button (если нужно) */}
         <button
           className="main-panel-options-button download"
-          onClick={() => {}}
+          onClick={() => onExport()}
         >
           Export HTML
         </button>

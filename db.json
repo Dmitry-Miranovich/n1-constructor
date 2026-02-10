@@ -2,7 +2,7 @@
   "colorBG": [
     {
       "id": "color",
-      "value": "#af4646"
+      "value": "#b80f0f"
     }
   ],
   "blocks": [
@@ -12,85 +12,44 @@
     },
     {
       "id": "1",
-      "type": "cardTypes"
+      "type": "cards"
     },
     {
       "id": "2",
-      "type": "cards"
+      "type": "cardTypes"
     }
   ],
   "cardTypes": [
     {
-      "id": "3",
-      "name": "asd",
-      "icon": "/uploads/cardTypes/moneyBag.svg",
-      "filter": "asdasd"
-    },
-    {
-      "id": "4",
-      "name": "asdasd",
+      "id": "0",
+      "name": "Casinos",
       "icon": "/uploads/cardTypes/rocket.svg",
-      "filter": "asdasdasd"
-    },
-    {
-      "id": "6",
-      "name": "asd",
-      "icon": "/uploads/cardTypes/moneyBag.svg",
-      "filter": "asdasd"
-    },
-    {
-      "id": "5",
-      "name": "asdasd",
-      "icon": "/uploads/cardTypes/medal.svg",
-      "filter": "213"
+      "filter": "casinos"
     }
   ],
   "cards": [
     {
-      "id": "1",
-      "name": "123123",
-      "imageUrl": "/uploads/cards/card-1.webp",
-      "type": "asdasd",
-      "status": "standard",
-      "href": "asdasd"
-    },
-    {
-      "id": "2",
-      "name": "asdasd",
-      "imageUrl": "/uploads/cards/card-2.webp",
-      "type": "zzzz",
-      "status": "standard",
-      "href": "asdasd"
-    },
-    {
-      "id": "4",
-      "name": "21231",
-      "imageUrl": "/uploads/cards/card-1.webp",
-      "type": "asdasdasd",
-      "status": "standard",
+      "id": "0",
+      "name": "Some",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "casinos",
+      "status": "exclusive",
       "href": "asd"
     }
   ],
   "banner": [
     {
       "id": "0",
-      "name": "asdasdasd21231",
-      "provider": "Netent",
-      "description": "This is super mega hyper amazing",
-      "imageUrl": "/uploads/banners/banner-2.webp"
-    },
-    {
-      "id": "1",
-      "name": "1231231232121ffsdfsdf",
-      "provider": "",
-      "description": "",
+      "name": "asdasd",
+      "provider": "213123",
+      "description": "12312",
       "imageUrl": "/uploads/banners/banner-3.webp"
     },
     {
-      "id": "2",
-      "name": "Name",
-      "provider": "",
-      "description": "",
+      "id": "1",
+      "name": "asdasdasd21231",
+      "provider": "Netent",
+      "description": "This is super mega hyper amazing",
       "imageUrl": "/uploads/banners/banner-2.webp"
     }
   ]

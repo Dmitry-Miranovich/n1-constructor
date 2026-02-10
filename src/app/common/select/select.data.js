@@ -51,12 +51,32 @@ export const IMAGE_LIBRARY = {
     {
       id: "c1",
       url: "/uploads/cards/card-1.webp",
-      label: "Guy",
+      label: "Cosmic Quest",
     },
     {
       id: "c2",
       url: "/uploads/cards/card-2.webp",
-      label: "Guy2",
+      label: "Crystal Caverns",
+    },
+    {
+      id: "c3",
+      url: "/uploads/cards/card-3.webp",
+      label: "Adventure Jackpot",
+    },
+    {
+      id: "c4",
+      url: "/uploads/cards/card-4.webp",
+      label: "Treasure Quest",
+    },
+    {
+      id: "c5",
+      url: "/uploads/cards/card-5.webp",
+      label: "Frozen Fortune",
+    },
+    {
+      id: "c6",
+      url: "/uploads/cards/card-6.webp",
+      label: "Lost Legends",
     },
   ],
 };
