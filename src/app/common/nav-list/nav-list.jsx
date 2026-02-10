@@ -16,14 +16,16 @@ import "./nav-list.scss";
 export default function NavList({ items, onClick }) {
   return (
     <div className="nav-list">
-      {items.map((nav_item, index) => (
-        <NavListItem
-          icon={nav_item.icon}
-          name={nav_item.name}
-          onClick={() => onClick(nav_item)}
-          key={`nav-list-item-${index}`}
-        />
-      ))}
+      <div className="nav-list-content">
+        {items.map((nav_item, index) => (
+          <NavListItem
+            icon={nav_item.icon}
+            name={nav_item.name}
+            onClick={() => onClick(nav_item)}
+            key={`nav-list-item-${index}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

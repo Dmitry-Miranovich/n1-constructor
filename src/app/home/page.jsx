@@ -37,10 +37,6 @@ export default function HomePage() {
     }
   }, [currentCardsType]);
 
-  useEffect(() => {
-    console.log(cards);
-  }, [cards]);
-
   const renderBlocks = () => {
     return blocks.map((block, index) => {
       switch (block.type) {
@@ -78,6 +74,7 @@ export default function HomePage() {
                 }))}
                 icon={`${process.env.REACT_APP_API_URL}${currentCardsType.icon}`}
                 name={currentCardsType.name}
+                itemsPerView={10}
               />
             )
           );

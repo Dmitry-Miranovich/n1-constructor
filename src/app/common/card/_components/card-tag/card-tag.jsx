@@ -16,7 +16,9 @@ export default function CardTag({ status }) {
           ? "Exclusive"
           : status === "limited"
             ? "Limited"
-            : ""}
+            : status === "new"
+              ? "New"
+              : "Standard"}
     </div>
   );
 }

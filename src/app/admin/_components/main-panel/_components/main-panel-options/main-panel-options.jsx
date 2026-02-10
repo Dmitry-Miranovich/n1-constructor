@@ -1,10 +1,13 @@
 import "./main-panel-options.scss";
 import { useAdminStore } from "src/app/_utils/stores/useAdminStore";
 import { useUpdate } from "src/app/_utils/hooks/useUpdate";
+import { useGet } from "src/app/_utils/hooks/useGet";
+import { useEffect } from "react";
 
 export default function MainPanelOptions({ title, entityType, onExport }) {
   const { setData, color } = useAdminStore((state) => state);
   const { fetch: update } = useUpdate();
+  const { data: fetchedColor } = useGet("colorBG");
   const onBlur = () => {
     try {
       update("colorBG", "color", {
@@ -15,6 +18,12 @@ export default function MainPanelOptions({ title, entityType, onExport }) {
       console.error(err.message);
     }
   };
+
+  useEffect(() => {
+    if (fetchedColor && fetchedColor.length > 0) {
+      setData(entityType, fetchedColor[0].value);
+    }
+  }, [fetchedColor]);
 
   return (
     <div className="main-panel-options">

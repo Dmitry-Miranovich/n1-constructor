@@ -20,6 +20,16 @@ export const IMAGE_LIBRARY = {
       url: "/uploads/banners/banner-4.webp",
       label: "VIP Lounge",
     },
+    {
+      id: "b5",
+      url: "/uploads/banners/banner-5.webp",
+      label: "Fastest ROI",
+    },
+    {
+      id: "b6",
+      url: "/uploads/banners/banner-6.webp",
+      label: "Quick Withdrawal",
+    },
   ],
   cardTypes: [
     {

@@ -4,6 +4,9 @@
   width: 100%;
   height: 100%;
   &-main {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
     &-options {
       display: flex;
       padding: toRem(16);
@@ -43,15 +46,24 @@
         }
       }
     }
+    &-context {
+      height: 100%;
+      overflow-y: auto;
+    }
     &-table {
       border-collapse: collapse;
       width: 100%;
+
       &-header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(20px);
+        z-index: 1;
         &-row {
           &-item {
             @include font-roboto(16, 700, 24);
             padding: toRem(16);
-            background-color: rgba($color: #fff, $alpha: 0.8);
+            background-color: #bbb8b8;
             // width: toRem(200);
             &:first-child {
               width: toRem(110);

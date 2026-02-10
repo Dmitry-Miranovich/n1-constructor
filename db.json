@@ -2,7 +2,7 @@
   "colorBG": [
     {
       "id": "color",
-      "value": "#6c1ce3"
+      "value": "#893e3e"
     }
   ],
   "blocks": [
@@ -25,80 +25,502 @@
       "name": "Casinos",
       "icon": "/uploads/cardTypes/chart-2.svg",
       "filter": "casinos"
+    },
+    {
+      "id": "1",
+      "name": "Slots",
+      "icon": "/uploads/cardTypes/cherry.svg",
+      "filter": "slots"
+    },
+    {
+      "id": "2",
+      "name": "Live Games",
+      "icon": "/uploads/cardTypes/person.svg",
+      "filter": "live-games"
+    },
+    {
+      "id": "3",
+      "name": "VIP",
+      "icon": "/uploads/cardTypes/medal.svg",
+      "filter": "vip"
+    },
+    {
+      "id": "4",
+      "name": "New",
+      "icon": "/uploads/cardTypes/rocket.svg",
+      "filter": "new"
+    },
+    {
+      "id": "5",
+      "name": "Top Rated",
+      "icon": "/uploads/cardTypes/rate.svg",
+      "filter": "top-rated"
+    },
+    {
+      "id": "6",
+      "name": "Popular",
+      "icon": "/uploads/cardTypes/chart-1.svg",
+      "filter": "popular"
+    },
+    {
+      "id": "7",
+      "name": "Bonuses",
+      "icon": "/uploads/cardTypes/moneyBag.svg",
+      "filter": "bonuses"
     }
   ],
   "cards": [
     {
       "id": "0",
-      "name": "Some",
+      "name": "Royal Vegas",
       "imageUrl": "/uploads/cards/card-4.webp",
       "type": "casinos",
       "status": "exclusive",
-      "href": "asd"
+      "href": "royal-vegas"
     },
     {
       "id": "1",
-      "name": "Card 2",
+      "name": "Spin Palace",
       "imageUrl": "/uploads/cards/card-6.webp",
       "type": "casinos",
       "status": "top",
-      "href": "no link"
-    },
-    {
-      "id": "3",
-      "name": "Card 2",
-      "imageUrl": "/uploads/cards/card-6.webp",
-      "type": "casinos",
-      "status": "top",
-      "href": "no link"
+      "href": "spin-palace"
     },
     {
       "id": "2",
-      "name": "Some",
-      "imageUrl": "/uploads/cards/card-4.webp",
+      "name": "Jackpot City",
+      "imageUrl": "/uploads/cards/card-3.webp",
       "type": "casinos",
       "status": "exclusive",
-      "href": "asd"
+      "href": "jackpot-city"
     },
     {
-      "id": "5",
-      "name": "Some",
-      "imageUrl": "/uploads/cards/card-4.webp",
+      "id": "3",
+      "name": "Ruby Fortune",
+      "imageUrl": "/uploads/cards/card-2.webp",
       "type": "casinos",
-      "status": "exclusive",
-      "href": "asd"
+      "status": "top",
+      "href": "ruby-fortune"
     },
     {
       "id": "4",
-      "name": "Card 2",
-      "imageUrl": "/uploads/cards/card-6.webp",
-      "type": "casinos",
-      "status": "top",
-      "href": "no link"
+      "name": "Cosmic Quest",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "slots",
+      "status": "new",
+      "href": "cosmic-quest"
+    },
+    {
+      "id": "5",
+      "name": "Crystal Caverns",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "slots",
+      "status": "exclusive",
+      "href": "crystal-caverns"
     },
     {
       "id": "6",
-      "name": "Some",
+      "name": "Adventure Jackpot",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "slots",
+      "status": "top",
+      "href": "adventure-jackpot"
+    },
+    {
+      "id": "7",
+      "name": "Treasure Quest",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "slots",
+      "status": "new",
+      "href": "treasure-quest"
+    },
+    {
+      "id": "8",
+      "name": "Frozen Fortune",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "slots",
+      "status": "exclusive",
+      "href": "frozen-fortune"
+    },
+    {
+      "id": "9",
+      "name": "Lost Legends",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "slots",
+      "status": "top",
+      "href": "lost-legends"
+    },
+    {
+      "id": "10",
+      "name": "Live Blackjack Pro",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "live-games",
+      "status": "exclusive",
+      "href": "live-blackjack"
+    },
+    {
+      "id": "11",
+      "name": "Roulette Royale",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "live-games",
+      "status": "top",
+      "href": "roulette-royale"
+    },
+    {
+      "id": "12",
+      "name": "VIP Baccarat",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "vip",
+      "status": "exclusive",
+      "href": "vip-baccarat"
+    },
+    {
+      "id": "13",
+      "name": "High Roller Suite",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "vip",
+      "status": "top",
+      "href": "high-roller"
+    },
+    {
+      "id": "14",
+      "name": "Mega Moolah",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "new",
+      "status": "new",
+      "href": "mega-moolah"
+    },
+    {
+      "id": "15",
+      "name": "Book of Ra",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "new",
+      "status": "exclusive",
+      "href": "book-of-ra"
+    },
+    {
+      "id": "16",
+      "name": "Starburst",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "top-rated",
+      "status": "top",
+      "href": "starburst"
+    },
+    {
+      "id": "17",
+      "name": "Gonzo's Quest",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "top-rated",
+      "status": "exclusive",
+      "href": "gonzos-quest"
+    },
+    {
+      "id": "18",
+      "name": "Buffalo Blitz",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "popular",
+      "status": "top",
+      "href": "buffalo-blitz"
+    },
+    {
+      "id": "19",
+      "name": "Cleopatra",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "popular",
+      "status": "exclusive",
+      "href": "cleopatra"
+    },
+    {
+      "id": "20",
+      "name": "Welcome Bonus 100%",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "bonuses",
+      "status": "new",
+      "href": "welcome-bonus"
+    },
+    {
+      "id": "21",
+      "name": "Free Spins Daily",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "bonuses",
+      "status": "top",
+      "href": "free-spins"
+    },
+    {
+      "id": "22",
+      "name": "Wild West Gold",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "slots",
+      "status": "top",
+      "href": "wild-west-gold"
+    },
+    {
+      "id": "23",
+      "name": "Big Bass Bonanza",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "slots",
+      "status": "exclusive",
+      "href": "big-bass-bonanza"
+    },
+    {
+      "id": "24",
+      "name": "Gates of Olympus",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "slots",
+      "status": "new",
+      "href": "gates-of-olympus"
+    },
+    {
+      "id": "25",
+      "name": "Sweet Bonanza",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "slots",
+      "status": "top",
+      "href": "sweet-bonanza"
+    },
+    {
+      "id": "26",
+      "name": "Dead or Alive 2",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "slots",
+      "status": "exclusive",
+      "href": "dead-or-alive"
+    },
+    {
+      "id": "27",
+      "name": "Reactoonz 2",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "slots",
+      "status": "new",
+      "href": "reactoonz"
+    },
+    {
+      "id": "28",
+      "name": "LeoVegas Casino",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "casinos",
+      "status": "standard",
+      "href": "leovegas"
+    },
+    {
+      "id": "29",
+      "name": "888 Casino",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "casinos",
+      "status": "limited",
+      "href": "888-casino"
+    },
+    {
+      "id": "30",
+      "name": "Betway Casino",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "casinos",
+      "status": "top",
+      "href": "betway"
+    },
+    {
+      "id": "31",
+      "name": "Casumo Casino",
       "imageUrl": "/uploads/cards/card-4.webp",
       "type": "casinos",
       "status": "exclusive",
-      "href": "asd"
+      "href": "casumo"
+    },
+    {
+      "id": "32",
+      "name": "Live Poker Master",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "live-games",
+      "status": "standard",
+      "href": "live-poker"
+    },
+    {
+      "id": "33",
+      "name": "Dream Catcher Live",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "live-games",
+      "status": "new",
+      "href": "dream-catcher"
+    },
+    {
+      "id": "34",
+      "name": "Monopoly Live",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "live-games",
+      "status": "top",
+      "href": "monopoly-live"
+    },
+    {
+      "id": "35",
+      "name": "VIP Blackjack",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "vip",
+      "status": "exclusive",
+      "href": "vip-blackjack"
+    },
+    {
+      "id": "36",
+      "name": "High Stakes Roulette",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "vip",
+      "status": "limited",
+      "href": "high-stakes-roulette"
+    },
+    {
+      "id": "37",
+      "name": "Diamond Room",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "vip",
+      "status": "standard",
+      "href": "diamond-room"
+    },
+    {
+      "id": "38",
+      "name": "Fire Joker",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "new",
+      "status": "new",
+      "href": "fire-joker"
+    },
+    {
+      "id": "39",
+      "name": "Pirate Kingdom",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "new",
+      "status": "limited",
+      "href": "pirate-kingdom"
+    },
+    {
+      "id": "40",
+      "name": "Wolf Gold",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "top-rated",
+      "status": "top",
+      "href": "wolf-gold"
+    },
+    {
+      "id": "41",
+      "name": "Book of Dead",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "top-rated",
+      "status": "exclusive",
+      "href": "book-of-dead"
+    },
+    {
+      "id": "42",
+      "name": "Jammin' Jars",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "top-rated",
+      "status": "standard",
+      "href": "jammin-jars"
+    },
+    {
+      "id": "43",
+      "name": "Mega Fortune",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "popular",
+      "status": "top",
+      "href": "mega-fortune"
+    },
+    {
+      "id": "44",
+      "name": "Immortal Romance",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "popular",
+      "status": "exclusive",
+      "href": "immortal-romance"
+    },
+    {
+      "id": "45",
+      "name": "Thunderstruck II",
+      "imageUrl": "/uploads/cards/card-6.webp",
+      "type": "popular",
+      "status": "limited",
+      "href": "thunderstruck"
+    },
+    {
+      "id": "46",
+      "name": "200% Deposit Bonus",
+      "imageUrl": "/uploads/cards/card-1.webp",
+      "type": "bonuses",
+      "status": "limited",
+      "href": "deposit-bonus"
+    },
+    {
+      "id": "47",
+      "name": "Cashback Weekend",
+      "imageUrl": "/uploads/cards/card-2.webp",
+      "type": "bonuses",
+      "status": "standard",
+      "href": "cashback-weekend"
+    },
+    {
+      "id": "48",
+      "name": "Tournament Entry",
+      "imageUrl": "/uploads/cards/card-3.webp",
+      "type": "bonuses",
+      "status": "new",
+      "href": "tournament-entry"
+    },
+    {
+      "id": "49",
+      "name": "Loyalty Rewards",
+      "imageUrl": "/uploads/cards/card-4.webp",
+      "type": "bonuses",
+      "status": "exclusive",
+      "href": "loyalty-rewards"
+    },
+    {
+      "id": "50",
+      "name": "Birthday Bonus",
+      "imageUrl": "/uploads/cards/card-5.webp",
+      "type": "bonuses",
+      "status": "limited",
+      "href": "birthday-bonus"
     }
   ],
   "banner": [
     {
       "id": "0",
-      "name": "asdasd",
-      "provider": "213123",
-      "description": "12312",
-      "imageUrl": "/uploads/banners/banner-3.webp"
+      "name": "Welcome Bonus 200%",
+      "provider": "NetEnt",
+      "description": "Get 200% bonus on your first deposit plus 50 free spins!",
+      "imageUrl": "/uploads/banners/banner-1.webp"
     },
     {
       "id": "1",
-      "name": "asdasdasd21231",
-      "provider": "Netent",
-      "description": "This is super mega hyper amazing",
+      "name": "Live Casino Experience",
+      "provider": "Evolution Gaming",
+      "description": "Real dealers, real excitement. Join our live tables now!",
       "imageUrl": "/uploads/banners/banner-2.webp"
+    },
+    {
+      "id": "2",
+      "name": "Mega Jackpot $5M",
+      "provider": "Microgaming",
+      "description": "Spin to win our progressive jackpot - over $5 million waiting!",
+      "imageUrl": "/uploads/banners/banner-3.webp"
+    },
+    {
+      "id": "3",
+      "name": "VIP Lounge Access",
+      "provider": "Playtech",
+      "description": "Exclusive games and personalized service for high rollers",
+      "imageUrl": "/uploads/banners/banner-4.webp"
+    },
+    {
+      "id": "4",
+      "name": "New Slots Collection",
+      "provider": "Pragmatic Play",
+      "description": "Discover the latest and hottest slot games of the month",
+      "imageUrl": "/uploads/banners/banner-5.webp"
+    },
+    {
+      "id": "5",
+      "name": "Mobile Gaming Update",
+      "provider": "Yggdrasil",
+      "description": "Play anywhere with our optimized mobile gaming platform",
+      "imageUrl": "/uploads/banners/banner-6.webp"
     }
   ]
 }

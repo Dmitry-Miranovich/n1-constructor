@@ -13,5 +13,6 @@
   &-name {
     @include font-roboto(16, 400, 24);
     color: #fff;
+    white-space: nowrap;
   }
 }

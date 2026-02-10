@@ -108,193 +108,205 @@ export default function Table({
           )}
         </div>
       )}
-      {entity && entity.length > 0 && (
-        <table className="table-main-table">
-          <thead className="table-main-table-header">
-            <tr className="table-main-table-header-row">
-              {editMode.mode === SettingsMode.COPY && (
-                <th className="table-main-table-header-row-item checkbox-item"></th>
-              )}
-              <th className="table-main-table-header-row-item">ID</th>
-              {table.header.map((item, key) => (
-                <th
-                  className="table-main-table-header-row-item"
-                  key={`banner-header-item-${key}`}
-                >
-                  {item}
-                </th>
-              ))}
-              {editMode.mode !== SettingsMode.COPY && (
-                <>
-                  <th className="table-main-table-header-row-item">Actions</th>
-                  <th className="table-main-table-header-row-item order-header">
-                    Order
-                  </th>
-                </>
-              )}
-            </tr>
-          </thead>
-          <tbody className="table-main-table-body">
-            {table.body.map((row, rowIndex) => (
-              <tr className="table-main-table-body-row" key={`row-${rowIndex}`}>
+      <div className="table-main-context">
+        {entity && entity.length > 0 && (
+          <table className="table-main-table">
+            <thead className="table-main-table-header">
+              <tr className="table-main-table-header-row">
                 {editMode.mode === SettingsMode.COPY && (
-                  <td className="table-main-table-body-row-item checkbox-item">
-                    <input
-                      type="checkbox"
-                      value={"rowIndex"}
-                      onChange={(e) =>
-                        copySettings.handleCheckboxSelect(
-                          rowIndex,
-                          e.target.checked,
-                        )
-                      }
-                    />
-                  </td>
+                  <th className="table-main-table-header-row-item checkbox-item"></th>
                 )}
-                <td className="table-main-table-body-row-item">
-                  {rowIndex + 1}
-                </td>
-                {row.map((cell, index) => {
-                  if (cell.propertyName !== "id") {
-                    switch (cell.type) {
-                      case "input": {
-                        return (
-                          <td
-                            className="table-main-table-body-row-item"
-                            key={`cell-${index}`}
-                          >
-                            <Input
-                              value={entity[rowIndex][cell.propertyName]}
-                              onChange={(value) =>
-                                handleOnChange(
-                                  value,
-                                  cell.propertyName,
-                                  rowIndex,
-                                )
-                              }
-                              readOnly={!isEdit(entity[rowIndex].id)}
-                              className="table-input-name"
-                            />
-                          </td>
-                        );
-                      }
-                      case "select": {
-                        return (
-                          <td
-                            className="table-main-table-body-row-item"
-                            key={`cell-${index}`}
-                          >
-                            <Select
-                              value={entity[rowIndex][cell.propertyName]}
-                              readOnly={!isEdit(entity[rowIndex].id)}
-                              options={cell.options ?? []}
-                              onChange={(value) => {
-                                handleOnChange(
-                                  value,
-                                  cell.propertyName,
-                                  rowIndex,
-                                );
-                              }}
-                            />
-                          </td>
-                        );
-                      }
-                      case "label": {
-                        return (
-                          <td
-                            className="table-main-table-body-row-item"
-                            key={`cell-${index}`}
-                          >
-                            <p>{cell.values}</p>
-                          </td>
-                        );
-                      }
-                      default: {
-                        return (
-                          <td
-                            className="table-main-table-body-row-item"
-                            key={`cell-${index}`}
-                          >
-                            <p>{cell.values}</p>
-                          </td>
-                        );
-                      }
-                    }
-                  }
-                })}
+                <th className="table-main-table-header-row-item">ID</th>
+                {table.header.map((item, key) => (
+                  <th
+                    className="table-main-table-header-row-item"
+                    key={`banner-header-item-${key}`}
+                  >
+                    {item}
+                  </th>
+                ))}
                 {editMode.mode !== SettingsMode.COPY && (
                   <>
-                    <td className="table-main-table-body-row-item">
-                      <div className="table-main-table-body-row-item-actions">
-                        {isEdit(entity[rowIndex].id) ? (
-                          <>
-                            <button
-                              onClick={() =>
-                                handleSave(entity[rowIndex].id, rowIndex)
-                              }
-                              className="table-main-table-body-row-item-actions-item"
-                            >
-                              <img src={bannerTableIcons.check} alt="Save" />
-                            </button>
-                            <button
-                              onClick={handleCancel}
-                              className="table-main-table-body-row-item-actions-item"
-                            >
-                              <img src={bannerTableIcons.clear} alt="Cancel" />
-                            </button>
-                          </>
-                        ) : (
-                          <>
-                            {actionsAccessibility.edit && (
-                              <button
-                                onClick={() => handleEdit(entity[rowIndex].id)}
-                                className="table-main-table-body-row-item-actions-item"
-                              >
-                                <img src={bannerTableIcons.edit} alt="Edit" />
-                              </button>
-                            )}
-                            {actionsAccessibility.delete && (
-                              <button
-                                onClick={() =>
-                                  handleDelete(entity[rowIndex].id)
-                                }
-                                className="table-main-table-body-row-item-actions-item"
-                              >
-                                <img
-                                  src={bannerTableIcons.remove}
-                                  alt="Remove"
-                                />
-                              </button>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </td>
-                    <td className="table-main-table-body-row-item order-header">
-                      <button
-                        onClick={() => handleMoveUp(rowIndex)}
-                        disabled={rowIndex === 0}
-                        className="table-main-table-body-row-item-actions-item move-btn"
-                        title="Move up"
-                      >
-                        ↑
-                      </button>
-                      <button
-                        onClick={() => handleMoveDown(rowIndex)}
-                        disabled={rowIndex === entity.length - 1}
-                        className="table-main-table-body-row-item-actions-item move-btn"
-                        title="Move down"
-                      >
-                        ↓
-                      </button>
-                    </td>
+                    <th className="table-main-table-header-row-item">
+                      Actions
+                    </th>
+                    <th className="table-main-table-header-row-item order-header">
+                      Order
+                    </th>
                   </>
                 )}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            </thead>
+            <tbody className="table-main-table-body">
+              {table.body.map((row, rowIndex) => (
+                <tr
+                  className="table-main-table-body-row"
+                  key={`row-${rowIndex}`}
+                >
+                  {editMode.mode === SettingsMode.COPY && (
+                    <td className="table-main-table-body-row-item checkbox-item">
+                      <input
+                        type="checkbox"
+                        value={"rowIndex"}
+                        onChange={(e) =>
+                          copySettings.handleCheckboxSelect(
+                            rowIndex,
+                            e.target.checked,
+                          )
+                        }
+                      />
+                    </td>
+                  )}
+                  <td className="table-main-table-body-row-item">
+                    {rowIndex + 1}
+                  </td>
+                  {row.map((cell, index) => {
+                    if (cell.propertyName !== "id") {
+                      switch (cell.type) {
+                        case "input": {
+                          return (
+                            <td
+                              className="table-main-table-body-row-item"
+                              key={`cell-${index}`}
+                            >
+                              <Input
+                                value={entity[rowIndex][cell.propertyName]}
+                                onChange={(value) =>
+                                  handleOnChange(
+                                    value,
+                                    cell.propertyName,
+                                    rowIndex,
+                                  )
+                                }
+                                readOnly={!isEdit(entity[rowIndex].id)}
+                                className="table-input-name"
+                              />
+                            </td>
+                          );
+                        }
+                        case "select": {
+                          return (
+                            <td
+                              className="table-main-table-body-row-item"
+                              key={`cell-${index}`}
+                            >
+                              <Select
+                                value={entity[rowIndex][cell.propertyName]}
+                                readOnly={!isEdit(entity[rowIndex].id)}
+                                options={cell.options ?? []}
+                                onChange={(value) => {
+                                  handleOnChange(
+                                    value,
+                                    cell.propertyName,
+                                    rowIndex,
+                                  );
+                                }}
+                              />
+                            </td>
+                          );
+                        }
+                        case "label": {
+                          return (
+                            <td
+                              className="table-main-table-body-row-item"
+                              key={`cell-${index}`}
+                            >
+                              <p>{cell.values}</p>
+                            </td>
+                          );
+                        }
+                        default: {
+                          return (
+                            <td
+                              className="table-main-table-body-row-item"
+                              key={`cell-${index}`}
+                            >
+                              <p>{cell.values}</p>
+                            </td>
+                          );
+                        }
+                      }
+                    }
+                  })}
+                  {editMode.mode !== SettingsMode.COPY && (
+                    <>
+                      <td className="table-main-table-body-row-item">
+                        <div className="table-main-table-body-row-item-actions">
+                          {isEdit(entity[rowIndex].id) ? (
+                            <>
+                              <button
+                                onClick={() =>
+                                  handleSave(entity[rowIndex].id, rowIndex)
+                                }
+                                className="table-main-table-body-row-item-actions-item"
+                              >
+                                <img src={bannerTableIcons.check} alt="Save" />
+                              </button>
+                              <button
+                                onClick={handleCancel}
+                                className="table-main-table-body-row-item-actions-item"
+                              >
+                                <img
+                                  src={bannerTableIcons.clear}
+                                  alt="Cancel"
+                                />
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              {actionsAccessibility.edit && (
+                                <button
+                                  onClick={() =>
+                                    handleEdit(entity[rowIndex].id)
+                                  }
+                                  className="table-main-table-body-row-item-actions-item"
+                                >
+                                  <img src={bannerTableIcons.edit} alt="Edit" />
+                                </button>
+                              )}
+                              {actionsAccessibility.delete && (
+                                <button
+                                  onClick={() =>
+                                    handleDelete(entity[rowIndex].id)
+                                  }
+                                  className="table-main-table-body-row-item-actions-item"
+                                >
+                                  <img
+                                    src={bannerTableIcons.remove}
+                                    alt="Remove"
+                                  />
+                                </button>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </td>
+                      <td className="table-main-table-body-row-item order-header">
+                        <button
+                          onClick={() => handleMoveUp(rowIndex)}
+                          disabled={rowIndex === 0}
+                          className="table-main-table-body-row-item-actions-item move-btn"
+                          title="Move up"
+                        >
+                          ↑
+                        </button>
+                        <button
+                          onClick={() => handleMoveDown(rowIndex)}
+                          disabled={rowIndex === entity.length - 1}
+                          className="table-main-table-body-row-item-actions-item move-btn"
+                          title="Move down"
+                        >
+                          ↓
+                        </button>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
