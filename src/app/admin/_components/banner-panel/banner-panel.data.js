@@ -11,10 +11,8 @@ export const bannerTableIcons = {
 };
 
 export const bannerHeaderNames = [
-  "ID",
   "Name",
   "Provider",
   "Description",
   "ImageUrl",
-  "Actions",
 ];

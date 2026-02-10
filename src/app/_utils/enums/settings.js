@@ -4,4 +4,5 @@ export const SettingsMode = {
   ADD: "add",
   DELETE: "delete",
   ORDER: "order",
+  COPY: "copy",
 };

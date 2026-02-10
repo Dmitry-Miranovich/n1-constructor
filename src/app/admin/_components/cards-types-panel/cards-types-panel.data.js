@@ -1,3 +1,3 @@
-const cardsTypesHeader = ["ID", "Title", "Icon", "Filter", "Actions"];
+const cardsTypesHeader = ["Title", "Icon", "Filter"];
 
 export { cardsTypesHeader };

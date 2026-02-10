@@ -53,6 +53,23 @@ export const api = {
     });
     return await response.json();
   },
+  async postMany(resource, data) {
+    const responses = await Promise.all(
+      data.map((item) =>
+        fetch(`${API_URL}/${resource}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item),
+        }),
+      ),
+    );
+
+    const results = await Promise.all(
+      responses.map((response) => response.json()),
+    );
+
+    return results;
+  },
   async update(resource, id, data, method = "PUT") {
     const response = await fetch(`${API_URL}/${resource}/${id}`, {
       method,
@@ -65,5 +82,14 @@ export const api = {
     await fetch(`${API_URL}/${resource}/${id}`, {
       method: "DELETE",
     });
+  },
+  async deleteMany(resource, ids) {
+    await Promise.all(
+      ids.map((id) =>
+        fetch(`${API_URL}/${resource}/${id}`, {
+          method: "DELETE",
+        }),
+      ),
+    );
   },
 };

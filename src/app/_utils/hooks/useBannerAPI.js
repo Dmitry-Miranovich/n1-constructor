@@ -1,16 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAdminStore } from "../stores/useAdminStore";
 import { SettingsMode } from "../enums/settings";
 import { useGet } from "./useGet";
 import { useUpdate } from "./useUpdate";
 import { usePost } from "./usePost";
 import { useDelete } from "./useDelete";
+import { api } from "src/server/app";
 
 export const useBannerAPI = (entityType, entityApiName) => {
   const { data: entityData, refetch } = useGet(entityApiName);
   const { fetch: update } = useUpdate();
   const { fetch: post } = usePost();
   const { fetch: remove } = useDelete();
+
   const {
     getTableData,
     setData,
@@ -22,6 +24,8 @@ export const useBannerAPI = (entityType, entityApiName) => {
     moveItemDown,
     deleteItemByIndex,
   } = useAdminStore((state) => state);
+
+  const [buffer, setBuffer] = useState([]);
 
   const entity = getTableData(entityType);
 
@@ -43,11 +47,19 @@ export const useBannerAPI = (entityType, entityApiName) => {
         await post(entityApiName, entity[id]);
         break;
       }
+      case SettingsMode.COPY: {
+        const preparedBuffer = buffer.map((item, index) => ({
+          ...item,
+          id: `${entity.length + index}`,
+        }));
+        await api.postMany(entityApiName, preparedBuffer);
+        break;
+      }
       default: {
         setEditMode(entityType, -1, SettingsMode.VIEW);
       }
     }
-
+    setBuffer([]);
     setEditMode(entityType, -1, SettingsMode.VIEW);
     refetch();
   };
@@ -81,6 +93,9 @@ export const useBannerAPI = (entityType, entityApiName) => {
     moveItemDown(entityType, index);
     setEditMode(entityType, index, SettingsMode.ORDER);
   };
+  const handleCopy = async () => {
+    setEditMode(entityType, -1, SettingsMode.COPY);
+  };
 
   useEffect(() => {
     if (
@@ -98,7 +113,6 @@ export const useBannerAPI = (entityType, entityApiName) => {
         const banner = bannersArray[i];
         await update(entityApiName, i, banner);
       }
-      console.log("All banners updated on server");
     } catch (error) {
       console.error("Failed to update all banners:", error);
       throw error;
@@ -118,8 +132,42 @@ export const useBannerAPI = (entityType, entityApiName) => {
     );
   };
 
+  const handleDeleteMany = async () => {
+    const ids = buffer.map((item) => item.id);
+    try {
+      await api.deleteMany(entityApiName, ids);
+    } catch (err) {
+      console.error(err.message);
+    } finally {
+      setEditMode(entityType, -1, SettingsMode.VIEW);
+      setBuffer([]);
+      refetch();
+    }
+  };
+
   const handleOnChange = (value, fieldName, index) => {
     updateFieldByIndex(entityType, index, fieldName, value);
+  };
+
+  const copySettings = {
+    handleCancel: () => {
+      setEditMode(entityType, -1, SettingsMode.VIEW);
+      setBuffer([]);
+    },
+    handleRemoveAll: () => {
+      handleDeleteMany();
+    },
+    handleConfirm: () => {
+      handleSave();
+    },
+    handleCheckboxSelect: (id, checked) => {
+      if (checked) {
+        setBuffer([...buffer, entity[id]]);
+      } else {
+        const filteredBuffer = buffer.filter((item) => +item.id !== id);
+        setBuffer(filteredBuffer);
+      }
+    },
   };
 
   return {
@@ -132,7 +180,9 @@ export const useBannerAPI = (entityType, entityApiName) => {
     handleMoveDown,
     handleMoveUp,
     handleSave,
+    handleCopy,
     entity,
     getEditMode,
+    copySettings,
   };
 };

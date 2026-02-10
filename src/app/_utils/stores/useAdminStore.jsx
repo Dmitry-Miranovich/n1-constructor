@@ -7,7 +7,7 @@ export const useAdminStore = create((set, get) => ({
   cards: [],
   cardTypes: [],
   blocks: [],
-  color: null,
+  color: "",
 
   // === СОСТОЯНИЕ РЕДАКТИРОВАНИЯ ДЛЯ КАЖДОГО ТИПА ===
   editModes: {

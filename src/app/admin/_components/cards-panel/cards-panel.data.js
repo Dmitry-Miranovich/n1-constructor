@@ -1,12 +1,4 @@
-const cardsHeader = [
-  "ID",
-  "Title",
-  "ImageUrl",
-  "Filter",
-  "Status",
-  "Link",
-  "Actions",
-];
+const cardsHeader = ["Title", "ImageUrl", "Filter", "Status", "Link"];
 
 const cardsStatus = [
   { label: "Standard", value: "standard" },

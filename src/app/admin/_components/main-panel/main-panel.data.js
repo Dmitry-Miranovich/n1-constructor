@@ -1,4 +1,4 @@
-const mainPanelHeader = ["ID", "Name", "Actions"];
+const mainPanelHeader = ["Name"];
 
 const blocksTypes = [
   { value: "banners", label: "Banners" },

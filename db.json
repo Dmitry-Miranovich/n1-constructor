@@ -2,17 +2,17 @@
   "colorBG": [
     {
       "id": "color",
-      "value": "#814b4b"
+      "value": "#af4646"
     }
   ],
   "blocks": [
     {
       "id": "0",
-      "type": "cardTypes"
+      "type": "banners"
     },
     {
       "id": "1",
-      "type": "banners"
+      "type": "cardTypes"
     },
     {
       "id": "2",
@@ -21,33 +21,31 @@
   ],
   "cardTypes": [
     {
-      "id": "0",
+      "id": "3",
       "name": "asd",
       "icon": "/uploads/cardTypes/moneyBag.svg",
       "filter": "asdasd"
     },
     {
-      "id": "1",
+      "id": "4",
       "name": "asdasd",
       "icon": "/uploads/cardTypes/rocket.svg",
       "filter": "asdasdasd"
     },
     {
-      "id": "2",
+      "id": "6",
+      "name": "asd",
+      "icon": "/uploads/cardTypes/moneyBag.svg",
+      "filter": "asdasd"
+    },
+    {
+      "id": "5",
       "name": "asdasd",
       "icon": "/uploads/cardTypes/medal.svg",
       "filter": "213"
     }
   ],
   "cards": [
-    {
-      "id": "0",
-      "name": "asdasd",
-      "imageUrl": "/uploads/cards/card-2.webp",
-      "type": "asdasd",
-      "status": "standard",
-      "href": "asdasd"
-    },
     {
       "id": "1",
       "name": "123123",
@@ -63,14 +61,6 @@
       "type": "zzzz",
       "status": "standard",
       "href": "asdasd"
-    },
-    {
-      "id": "3",
-      "name": "",
-      "imageUrl": "/uploads/cards/card-2.webp",
-      "type": "213",
-      "status": "exclusive",
-      "href": ""
     },
     {
       "id": "4",
