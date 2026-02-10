@@ -256,9 +256,11 @@ export default function Table({
                             <>
                               {actionsAccessibility.edit && (
                                 <button
-                                  onClick={() =>
-                                    handleEdit(entity[rowIndex].id)
-                                  }
+                                  onClick={() => {
+                                    if (editMode.mode !== SettingsMode.EDIT) {
+                                      handleEdit(entity[rowIndex].id);
+                                    }
+                                  }}
                                   className="table-main-table-body-row-item-actions-item"
                                 >
                                   <img src={bannerTableIcons.edit} alt="Edit" />
@@ -266,9 +268,11 @@ export default function Table({
                               )}
                               {actionsAccessibility.delete && (
                                 <button
-                                  onClick={() =>
-                                    handleDelete(entity[rowIndex].id)
-                                  }
+                                  onClick={() => {
+                                    if (editMode.mode !== SettingsMode.EDIT) {
+                                      handleDelete(entity[rowIndex].id);
+                                    }
+                                  }}
                                   className="table-main-table-body-row-item-actions-item"
                                 >
                                   <img
@@ -283,7 +287,11 @@ export default function Table({
                       </td>
                       <td className="table-main-table-body-row-item order-header">
                         <button
-                          onClick={() => handleMoveUp(rowIndex)}
+                          onClick={() => {
+                            if (editMode.mode !== SettingsMode.EDIT) {
+                              handleMoveUp(rowIndex);
+                            }
+                          }}
                           disabled={rowIndex === 0}
                           className="table-main-table-body-row-item-actions-item move-btn"
                           title="Move up"
@@ -291,7 +299,11 @@ export default function Table({
                           ↑
                         </button>
                         <button
-                          onClick={() => handleMoveDown(rowIndex)}
+                          onClick={() => {
+                            if (editMode.mode !== SettingsMode.EDIT) {
+                              handleMoveDown(rowIndex);
+                            }
+                          }}
                           disabled={rowIndex === entity.length - 1}
                           className="table-main-table-body-row-item-actions-item move-btn"
                           title="Move down"
